@@ -213,6 +213,7 @@ Makefile: ../scp_gui/scp_gui.pro D:/software/Qt/Qt/5.12.6/mingw73_32/mkspecs/win
 		D:/software/Qt/Qt/5.12.6/mingw73_32/mkspecs/features/qt_config.prf \
 		D:/software/Qt/Qt/5.12.6/mingw73_32/mkspecs/win32-g++/qmake.conf \
 		D:/software/Qt/Qt/5.12.6/mingw73_32/mkspecs/features/spec_post.prf \
+		.qmake.stash \
 		D:/software/Qt/Qt/5.12.6/mingw73_32/mkspecs/features/exclusive_builds.prf \
 		D:/software/Qt/Qt/5.12.6/mingw73_32/mkspecs/features/toolchain.prf \
 		D:/software/Qt/Qt/5.12.6/mingw73_32/mkspecs/features/default_pre.prf \
@@ -391,6 +392,7 @@ D:/software/Qt/Qt/5.12.6/mingw73_32/mkspecs/features/qt_functions.prf:
 D:/software/Qt/Qt/5.12.6/mingw73_32/mkspecs/features/qt_config.prf:
 D:/software/Qt/Qt/5.12.6/mingw73_32/mkspecs/win32-g++/qmake.conf:
 D:/software/Qt/Qt/5.12.6/mingw73_32/mkspecs/features/spec_post.prf:
+.qmake.stash:
 D:/software/Qt/Qt/5.12.6/mingw73_32/mkspecs/features/exclusive_builds.prf:
 D:/software/Qt/Qt/5.12.6/mingw73_32/mkspecs/features/toolchain.prf:
 D:/software/Qt/Qt/5.12.6/mingw73_32/mkspecs/features/default_pre.prf:

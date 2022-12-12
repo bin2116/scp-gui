@@ -24,14 +24,14 @@ MyWidget::MyWidget(QWidget *parent)
 
     QWidget *trafficPageWidget = new QWidget(stackedWidget);
     QWidget *playerPageWidget = new QWidget(stackedWidget);
-    QWidget *environmentAction = new QWidget(stackedWidget);
+    QWidget *environmentActionPageWidget = new QWidget(stackedWidget);
     QWidget *trafficLightPageWidget = new QWidget(stackedWidget);
     QWidget *setPageWidget = new QWidget(stackedWidget);
     QWidget *animatorPageWidget = new QWidget(stackedWidget);
 
     stackedWidget->addWidget(trafficPageWidget);
     stackedWidget->addWidget(playerPageWidget);
-    stackedWidget->addWidget(environmentAction);
+    stackedWidget->addWidget(environmentActionPageWidget);
     stackedWidget->addWidget(trafficLightPageWidget);
     stackedWidget->addWidget(setPageWidget);
     stackedWidget->addWidget(animatorPageWidget);
@@ -333,12 +333,8 @@ MyWidget::MyWidget(QWidget *parent)
     layout2->addWidget(actTraGroupBox);
     layout2->addWidget(actionPathGroupBox);
 
-//    1. Player->Delete节点内容。
-    QGroupBox *deleteGroupBox = new QGroupBox( tr("删除实体(只能删除交通车)"),playerPageWidget);
-    deleteGroupBox->setCheckable(true);
-
-//    2. Player->DriverBehavior节点内容。
-    QGroupBox *idGroupBox = new QGroupBox( tr("修改实体的驾驶员模型(车辆才能生效)"),playerPageWidget);
+    //Player
+    QGroupBox *idGroupBox = new QGroupBox(playerPageWidget);
 
     QLabel *idLabel = new QLabel(tr("实体的id"), this);
     QLineEdit *idLineEdite = new QLineEdit(this);
@@ -348,9 +344,11 @@ MyWidget::MyWidget(QWidget *parent)
     idGridLayout->addWidget(idLineEdite,0,1);
 
     idGroupBox->setLayout(idGridLayout);
+//    1. Player->Delete节点内容。
+    QGroupBox *deleteGroupBox = new QGroupBox( tr("删除实体(只能删除交通车)"),playerPageWidget);
+    deleteGroupBox->setCheckable(true);
 
-
-
+//    2. Player->DriverBehavior节点内容。
     QGroupBox *driverBehaviorGroupBox = new QGroupBox( tr("修改实体的驾驶员模型(车辆才能生效)"),playerPageWidget);
     driverBehaviorGroupBox->setCheckable(true);
 
@@ -448,11 +446,703 @@ MyWidget::MyWidget(QWidget *parent)
     creatGridLayout->addWidget(drDegLabel,8,0);
     creatGridLayout->addWidget(drDegLineEdite,8,1);
 
+    creatGroupBox->setLayout(creatGridLayout);
+
+//    4. Player->LeftTurnLight节点内容。
+    QGroupBox *leftTurnLightGroupBox = new QGroupBox(tr("左转向灯"),playerPageWidget);
+    leftTurnLightGroupBox->setCheckable(true);
+
+    QLabel *stateLabel = new QLabel(tr("状态"), this);
+    QLineEdit *stateLineEdite = new QLineEdit(this);
+
+    QLabel *stateMaskLabel = new QLabel(tr("是否覆盖自动给的转向状态"), this);
+    QLineEdit *stateMaskLineEdite = new QLineEdit(this);
+
+    QGridLayout * leftTurnLightGridLayout = new QGridLayout(this);
+
+    leftTurnLightGridLayout->addWidget(stateLabel,0,0);
+    leftTurnLightGridLayout->addWidget(stateLineEdite,0,1);
+
+    leftTurnLightGridLayout->addWidget(stateMaskLabel,1,0);
+    leftTurnLightGridLayout->addWidget(stateMaskLineEdite,1,1);
+
+    leftTurnLightGroupBox->setLayout(leftTurnLightGridLayout);
+
+//    5. Player->RightTurnLight节点内容。
+    QGroupBox *rightTurnLightGroupBox = new QGroupBox(tr("右转向灯"),playerPageWidget);
+    rightTurnLightGroupBox->setCheckable(true);
+
+    QLabel *stateLabel5 = new QLabel(tr("状态"), this);
+    QLineEdit *stateLineEdite5 = new QLineEdit(this);
+
+    QLabel *stateMaskLabel5 = new QLabel(tr("是否覆盖自动给的转向状态"), this);
+    QLineEdit *stateMaskLineEdite5 = new QLineEdit(this);
+
+    QGridLayout * rightTurnLightGridLayout = new QGridLayout(this);
+
+    rightTurnLightGridLayout->addWidget(stateLabel5,0,0);
+    rightTurnLightGridLayout->addWidget(stateLineEdite5,0,1);
+
+    rightTurnLightGridLayout->addWidget(stateMaskLabel5,1,0);
+    rightTurnLightGridLayout->addWidget(stateMaskLineEdite5,1,1);
+
+    rightTurnLightGroupBox->setLayout(rightTurnLightGridLayout);
+
+//    6. Player->HeadLight节点内容。
+    QGroupBox *headLightGroupBox = new QGroupBox(tr("车头灯"),playerPageWidget);
+    headLightGroupBox->setCheckable(true);
+
+    QLabel *stateLabel6 = new QLabel(tr("状态"), this);
+    QLineEdit *stateLineEdite6 = new QLineEdit(this);
+
+    QLabel *stateMaskLabel6 = new QLabel(tr("是否覆盖自动给的头灯状态"), this);
+    QLineEdit *stateMaskLineEdite6 = new QLineEdit(this);
+
+    QGridLayout * headLightGridLayout = new QGridLayout(this);
+
+    headLightGridLayout->addWidget(stateLabel6,0,0);
+    headLightGridLayout->addWidget(stateLineEdite6,0,1);
+
+    headLightGridLayout->addWidget(stateMaskLabel6,1,0);
+    headLightGridLayout->addWidget(stateMaskLineEdite6,1,1);
+
+    headLightGroupBox->setLayout(headLightGridLayout);
+
+//    7. Player->BrakeLight节点内容。
+    QGroupBox *brakeLightGroupBox = new QGroupBox(tr("刹车灯"),playerPageWidget);
+    brakeLightGroupBox->setCheckable(true);
+
+    QLabel *stateLabel7 = new QLabel(tr("状态"), this);
+    QLineEdit *stateLineEdite7 = new QLineEdit(this);
+
+    QLabel *stateMaskLabel7 = new QLabel(tr("是否覆盖自动给的制动状态"), this);
+    QLineEdit *stateMaskLineEdite7 = new QLineEdit(this);
+
+    QGridLayout * brakeLightGridLayout = new QGridLayout(this);
+
+    brakeLightGridLayout->addWidget(stateLabel7,0,0);
+    brakeLightGridLayout->addWidget(stateLineEdite7,0,1);
+
+    brakeLightGridLayout->addWidget(stateMaskLabel7,1,0);
+    brakeLightGridLayout->addWidget(stateMaskLineEdite7,1,1);
+
+    brakeLightGroupBox->setLayout(brakeLightGridLayout);
+
+//     8. Player->PositionAbsolute节点内容。
+    QGroupBox *posAbsGroupBox = new QGroupBox(tr("设定交通车的绝对位置"),playerPageWidget);
+    posAbsGroupBox->setCheckable(true);
+
+    QLabel *xLabel = new QLabel(tr("x坐标"));
+    QLineEdit *xLineEdit = new QLineEdit();
+
+    QLabel *yLabel = new QLabel(tr("y坐标"));
+    QLineEdit *yLineEdit = new QLineEdit();
+
+    QLabel *zLabel = new QLabel(tr("z坐标"));
+    QLineEdit *zLineEdit = new QLineEdit();
+
+    QLabel *hDegLabel = new QLabel(tr("hDeg坐标"));
+    QLineEdit *hDegLineEdit = new QLineEdit();
+
+    QGridLayout *posAbsGridLayout = new QGridLayout();
+
+    posAbsGridLayout->addWidget(xLabel,0,0);
+    posAbsGridLayout->addWidget(xLineEdit,0,1);
+
+    posAbsGridLayout->addWidget(yLabel,1,0);
+    posAbsGridLayout->addWidget(yLineEdit,1,1);
+
+    posAbsGridLayout->addWidget(zLabel,2,0);
+    posAbsGridLayout->addWidget(zLineEdit,2,1);
+
+    posAbsGridLayout->addWidget(hDegLabel,3,0);
+    posAbsGridLayout->addWidget(hDegLineEdit,3,1);
+
+    posAbsGroupBox->setLayout(posAbsGridLayout);
+
+//    9. Player->PositionRelative节点内容。
+    QGroupBox *posRelGroupBox = new QGroupBox(tr("横向追车"),playerPageWidget);
+    posRelGroupBox->setCheckable(true);
+
+    QLabel *actorLabel9 = new QLabel(tr("相对实体id"));
+    QLineEdit *actorLineEdit9 = new QLineEdit();
+
+    QLabel *disLabel = new QLabel(tr("相对实体沿道路方向的距离"));
+    QLineEdit *disLineEdit = new QLineEdit();
+
+    QLabel *laneLabel = new QLabel(tr("相对实体的车道的id(左+ /右-)"));
+    QLineEdit *laneLineEdit = new QLineEdit();
+
+    QLabel *offsetLabel9 = new QLabel(tr("偏离车道的距离(默认为0)"));
+    QLineEdit *offsetLineEdit9 = new QLineEdit();
+
+    QLabel *dhDegLabel9 = new QLabel(tr("相对实体的方向角"));
+    QLineEdit *dhDegLineEdit9 = new QLineEdit();
+
+    QGridLayout *posRelGridLayout = new QGridLayout();
+
+    posRelGridLayout->addWidget(actorLabel9,0,0);
+    posRelGridLayout->addWidget(actorLineEdit9,0,1);
+
+    posRelGridLayout->addWidget(disLabel,1,0);
+    posRelGridLayout->addWidget(disLineEdit,1,1);
+
+    posRelGridLayout->addWidget(laneLabel,2,0);
+    posRelGridLayout->addWidget(laneLineEdit,2,1);
+
+    posRelGridLayout->addWidget(offsetLabel9,3,0);
+    posRelGridLayout->addWidget(offsetLineEdit9,3,1);
+
+    posRelGridLayout->addWidget(dhDegLabel9,4,0);
+    posRelGridLayout->addWidget(dhDegLineEdit9,4,1);
+
+    posRelGroupBox->setLayout(posRelGridLayout);
+
+    QVBoxLayout *playerPagelayout = new QVBoxLayout(playerPageWidget);
+
+    playerPagelayout->addWidget(idGroupBox);
+    playerPagelayout->addWidget(deleteGroupBox);
+    playerPagelayout->addWidget(driverBehaviorGroupBox);
+    playerPagelayout->addWidget(creatGroupBox);
+    playerPagelayout->addWidget(leftTurnLightGroupBox);
+    playerPagelayout->addWidget(rightTurnLightGroupBox);
+    playerPagelayout->addWidget(headLightGroupBox);
+    playerPagelayout->addWidget(brakeLightGroupBox);
+    playerPagelayout->addWidget(posAbsGroupBox);
+    playerPagelayout->addWidget(posRelGroupBox);
+
+
+
+    //EnvironmentAction
+//    EnvironmentAction->Environment
+    QGroupBox *environmentGroupBox = new QGroupBox("第一层节点环境",environmentActionPageWidget);
+    environmentGroupBox->setCheckable(true);
+
+    QGroupBox *sunGroupBox0 = new QGroupBox(environmentGroupBox);
+    QLabel *sunTypeLabel0 = new QLabel(tr("太阳类型"));
+    QLineEdit *sunTypeLabelLineEdit = new QLineEdit();
+
+    QGridLayout *sunGridLayout0 = new QGridLayout(sunGroupBox0);
+
+    sunGridLayout0->addWidget(sunTypeLabel0,0,0);
+    sunGridLayout0->addWidget(sunTypeLabelLineEdit,0,1);
+
+
+
+
+    //    QGridLayout *environmentGridLayout = new QGridLayout(environmentGroupBox);
+
+    //    environmentGridLayout->addWidget(sunTypeLabel,0,0);
+    //    environmentGridLayout->addWidget(sunTypeLabelLineEdit,0,1);
+
+//    EnvironmentAction->Environment->TimeOfDay
+    QGroupBox *timeOfDayGroupBox = new QGroupBox(tr("交通流开始更新"),environmentGroupBox);
+    timeOfDayGroupBox->setCheckable(true);
+
+    QLabel *animationLabel = new QLabel(tr("时间流动"));
+    QLineEdit *animationLineEdit = new QLineEdit();
+
+    QLabel *dateTimeLabel = new QLabel(tr("日期时间"));
+    QLineEdit *dateTimeLineEdit = new QLineEdit();
+
+    QGridLayout *timeOfDayGridLayout = new QGridLayout(timeOfDayGroupBox);
+
+    timeOfDayGridLayout->addWidget(animationLabel,0,0);
+    timeOfDayGridLayout->addWidget(animationLineEdit,0,1);
+
+    timeOfDayGridLayout->addWidget(dateTimeLabel,1,0);
+    timeOfDayGridLayout->addWidget(dateTimeLineEdit,1,1);
+
+
+//    EnvironmentAction->Environment->Weather
+    QGroupBox *weatherGroupBox = new QGroupBox(tr("天气节点"),environmentGroupBox);
+    weatherGroupBox->setCheckable(true);
+
+    QGroupBox *cloudStateGroupBox = new QGroupBox(tr("天气节点"),weatherGroupBox);
+    QLabel *cloudStateLabel = new QLabel(tr("天空云层类型"));
+    QLineEdit *cloudStateLineEdit = new QLineEdit();
+
+
+    QGridLayout *cloudStateGridLayout = new QGridLayout(cloudStateGroupBox);
+    cloudStateGridLayout->addWidget(cloudStateLabel,0,0);
+    cloudStateGridLayout->addWidget(cloudStateLineEdit,0,1);
+
+    //    QGridLayout *weatherGridLayout = new QGridLayout(weatherGroupBox);
+
+    //    weatherGridLayout->addWidget(cloudStateLabel,0,0);
+    //    weatherGridLayout->addWidget(cloudStateLineEdit,0,1);
+
+//    EnvironmentAction->Environment->Weather->Sun
+    QGroupBox *sunGroupBox = new QGroupBox(tr("太阳类型(只有在suntype=sun时有效)"),weatherGroupBox);
+    sunGroupBox->setCheckable(true);
+
+    QLabel *intensityLabel = new QLabel(tr("光强"));
+    QLineEdit *intensityLineEdit = new QLineEdit();
+
+    QLabel *elevationLabel = new QLabel(tr("海拔弧度"));
+    QLineEdit *elevationLineEdit = new QLineEdit();
+
+    QLabel *azimuthLabel = new QLabel(tr("方向弧度"));
+    QLineEdit *azimuthLineEdit = new QLineEdit();
+
+    QGridLayout *sunGridLayout = new QGridLayout(sunGroupBox);
+
+    sunGridLayout->addWidget(intensityLabel,0,0);
+    sunGridLayout->addWidget(intensityLineEdit,0,1);
+
+    sunGridLayout->addWidget(elevationLabel,1,0);
+    sunGridLayout->addWidget(elevationLineEdit,1,1);
+
+    sunGridLayout->addWidget(azimuthLabel,2,0);
+    sunGridLayout->addWidget(azimuthLineEdit,2,1);
+
+
+ //    EnvironmentAction->Environment->Weather->Fog
+    QGroupBox *fogGroupBox = new QGroupBox(tr("雾节点"),weatherGroupBox);
+    fogGroupBox->setCheckable(true);
+
+    QGroupBox *typeGroupBox = new QGroupBox(fogGroupBox);
+    QLabel *typeLabel = new QLabel(tr("雾类型"));
+    QLineEdit *typeLineEdit = new QLineEdit();
+
+    QGridLayout *typeGridLayout = new QGridLayout(typeGroupBox);
+    typeGridLayout->addWidget(typeLabel,0,0);
+    typeGridLayout->addWidget(typeLineEdit,0,1);
+
+    QGroupBox *fogRangeGroupBox = new QGroupBox(fogGroupBox);
+    QLabel *fogRangeLabel = new QLabel(tr("范围"));
+    QLineEdit *fogRangeLineEdit = new QLineEdit();
+
+    QGridLayout *fogRangeGridLayout = new QGridLayout(fogRangeGroupBox);
+    fogRangeGridLayout->addWidget(fogRangeLabel,0,0);
+    fogRangeGridLayout->addWidget(fogRangeLineEdit,0,1);
+
+    QGroupBox *visualRangeGroupBox = new QGroupBox(fogGroupBox);
+    QLabel *visualRangeLabel = new QLabel(tr("可视距离"));
+    QLineEdit *visualRangeLineEdit = new QLineEdit();
+
+    QGridLayout *visualRangeGridLayout = new QGridLayout(visualRangeGroupBox);
+    visualRangeGridLayout->addWidget(visualRangeLabel,0,0);
+    visualRangeGridLayout->addWidget(visualRangeLineEdit,0,1);
+
+
+
+
+    //    QGridLayout *fogGridLayout = new QGridLayout(fogGroupBox);
+
+    //    fogGridLayout->addWidget(typeLabel,0,0);
+    //    fogGridLayout->addWidget(typeLineEdit,0,1);
+
+    //    fogGridLayout->addWidget(fogRangeLabel,1,0);
+    //    fogGridLayout->addWidget(fogRangeLineEdit,1,1);
+
+    //    fogGridLayout->addWidget(visualRangeLabel,2,0);
+    //    fogGridLayout->addWidget(visualRangeLineEdit,2,1);
+
+//    EnvironmentAction->Environment->Weather->Fog->BoundingBox
+    QGroupBox *boundingBoxGroupBox = new QGroupBox(tr("局部雾范围节点"),fogGroupBox);
+    boundingBoxGroupBox->setCheckable(true);
+
+
+//    EnvironmentAction->Environment->Weather->Fog->BoundingBox->Center
+    QGroupBox *centerGroupBox = new QGroupBox(tr("局部雾中心点"),boundingBoxGroupBox);
+    centerGroupBox->setCheckable(true);
+
+    QLabel *xLabel2 = new QLabel(tr("x坐标"));
+    QLineEdit *xLineEdit2 = new QLineEdit();
+
+    QLabel *yLabel2 = new QLabel(tr("y坐标"));
+    QLineEdit *yLineEdit2 = new QLineEdit();
+
+    QLabel *zLabel2 = new QLabel(tr("z坐标"));
+    QLineEdit *zLineEdit2 = new QLineEdit();
+
+    QGridLayout *centerGridLayout = new QGridLayout(centerGroupBox);
+
+    centerGridLayout->addWidget(xLabel2,0,0);
+    centerGridLayout->addWidget(xLineEdit2,0,1);
+
+    centerGridLayout->addWidget(yLabel2,1,0);
+    centerGridLayout->addWidget(yLineEdit2,1,1);
+
+    centerGridLayout->addWidget(zLabel2,2,0);
+    centerGridLayout->addWidget(zLineEdit2,2,1);
+
+//    EnvironmentAction->Environment->Weather->Fog->BoundingBox->Dimensions
+    QGroupBox *dimGroupBox = new QGroupBox(tr("局部雾的范围"),boundingBoxGroupBox);
+    dimGroupBox->setCheckable(true);
+
+    QLabel *lenLabel = new QLabel(tr("雾框的长度"));
+    QLineEdit *lenLineEdit = new QLineEdit();
+
+    QLabel *heightLabel = new QLabel(tr("雾框的高度"));
+    QLineEdit *heightLineEdit = new QLineEdit();
+
+    QLabel *widthLabel = new QLabel(tr("雾框的宽度"));
+    QLineEdit *widthLineEdit = new QLineEdit();
+
+    QGridLayout *dimGridLayout = new QGridLayout(dimGroupBox);
+
+    dimGridLayout->addWidget(lenLabel,0,0);
+    dimGridLayout->addWidget(lenLineEdit,0,1);
+
+    dimGridLayout->addWidget(heightLabel,1,0);
+    dimGridLayout->addWidget(heightLineEdit,1,1);
+
+    dimGridLayout->addWidget(widthLabel,2,0);
+    dimGridLayout->addWidget(widthLineEdit,2,1);
+
+//    EnvironmentAction->Environment->Weather->Precipitation
+    QGroupBox *precGroupBox = new QGroupBox(tr("下雨类型"),weatherGroupBox);
+    precGroupBox->setCheckable(true);
+
+    QLabel *intensityLabel2 = new QLabel(tr("强度"));
+    QLineEdit *intensityLineEdit2 = new QLineEdit();
+
+    QLabel *precLabel = new QLabel(tr("强度"));
+    QLineEdit *precLineEdit = new QLineEdit();
+
+    QGridLayout *precGridLayout = new QGridLayout(precGroupBox);
+
+    precGridLayout->addWidget(intensityLabel2,0,0);
+    precGridLayout->addWidget(intensityLineEdit2,0,1);
+
+    precGridLayout->addWidget(precLabel,1,0);
+    precGridLayout->addWidget(precLineEdit,1,1);
+
+//    EnvironmentAction->Environment->RoadCondition
+    QGroupBox *roadConGroupBox = new QGroupBox(tr("路面条件"),environmentGroupBox);
+    roadConGroupBox->setCheckable(true);
+
+    QLabel *fricScalLabel = new QLabel(tr("摩擦系数"));
+    QLineEdit *fricScalLineEdit = new QLineEdit();
+
+    QGridLayout *roadConGridLayout = new QGridLayout(roadConGroupBox);
+    roadConGridLayout->addWidget(fricScalLabel,0,0);
+    roadConGridLayout->addWidget(fricScalLineEdit,0,1);
+
+//    EnvironmentAction->Environment->Properties
+    QGroupBox *propertiesGroupBox = new QGroupBox(tr("其他属性"),environmentGroupBox);
+    propertiesGroupBox->setCheckable(true);
+
+
+//    EnvironmentAction->Environment->Properties->Property1
+    QGroupBox *property1GroupBox = new QGroupBox(tr("属性一"),propertiesGroupBox);
+    property1GroupBox->setCheckable(true);
+
+    QLabel *name1Label = new QLabel(tr("name1 积水"), this);
+    QLineEdit *name1LineEdite = new QLineEdit(this);
+
+    QLabel *value1Label = new QLabel(tr("value1 积水类型"), this);
+    QLineEdit *value1LineEdite = new QLineEdit(this);
+
+    QGridLayout *name1GridLayout = new QGridLayout(property1GroupBox);
+
+    name1GridLayout->addWidget(name1Label,0,0);
+    name1GridLayout->addWidget(name1LineEdite,0,1);
+
+    name1GridLayout->addWidget(value1Label,1,0);
+    name1GridLayout->addWidget(value1LineEdite,1,1);
+
+    //    EnvironmentAction->Environment->Properties->Property2
+    QGroupBox *property2GroupBox = new QGroupBox(tr("属性二"),propertiesGroupBox);
+    property2GroupBox->setCheckable(true);
+
+    QLabel *name2Label = new QLabel(tr("name2 积水量"), this);
+    QLineEdit *name2LineEdite = new QLineEdit(this);
+
+    QLabel *value2Label = new QLabel(tr("value2 积水类型"), this);
+    QLineEdit *value2LineEdite = new QLineEdit(this);
+
+    QGridLayout *name2GridLayout = new QGridLayout(property2GroupBox);
+
+    name2GridLayout->addWidget(name2Label,0,0);
+    name2GridLayout->addWidget(name2LineEdite,0,1);
+
+    name2GridLayout->addWidget(value2Label,1,0);
+    name2GridLayout->addWidget(value2LineEdite,1,1);
+
+
+
+
+    QVBoxLayout *envLayout = new QVBoxLayout(environmentGroupBox);
+    envLayout->addWidget(sunGroupBox0);
+    envLayout->addWidget(timeOfDayGroupBox);
+    envLayout->addWidget(weatherGroupBox);
+    envLayout->addWidget(roadConGroupBox);
+    envLayout->addWidget(propertiesGroupBox);
+
+    QVBoxLayout *weatherVLayout = new QVBoxLayout(weatherGroupBox);
+    weatherVLayout->addWidget(cloudStateGroupBox);
+    weatherVLayout->addWidget(sunGroupBox);
+    weatherVLayout->addWidget(fogGroupBox);
+    weatherVLayout->addWidget(precGroupBox);
+
+    QVBoxLayout *properVLayout = new QVBoxLayout(propertiesGroupBox);
+    properVLayout->addWidget(property1GroupBox);
+    properVLayout->addWidget(property2GroupBox);
+
+    QVBoxLayout *fogVLayout = new QVBoxLayout(fogGroupBox);
+    fogVLayout->addWidget(typeGroupBox);
+    fogVLayout->addWidget(fogRangeGroupBox);
+    fogVLayout->addWidget(visualRangeGroupBox);
+    fogVLayout->addWidget(boundingBoxGroupBox);
+
+    QVBoxLayout *boundingBoxVLayout = new QVBoxLayout(boundingBoxGroupBox);
+    boundingBoxVLayout->addWidget(centerGroupBox);
+    boundingBoxVLayout->addWidget(dimGroupBox);
+
+
+
+    //TrafficLight
+    QGroupBox *idGroupBox2 = new QGroupBox(trafficLightPageWidget);
+//    idGroupBox2->setCheckable(true);
+
+    QLabel *idLabel2 = new QLabel(tr("交通灯的id"), this);
+    QLineEdit *idLineEdite2 = new QLineEdit(this);
+
+    QGridLayout *idGridLayout2 = new QGridLayout(this);
+    idGridLayout2->addWidget(idLabel2,0,0);
+    idGridLayout2->addWidget(idLineEdite2,0,1);
+
+    idGroupBox2->setLayout(idGridLayout2);
+
+//    1.TrafficLight->SetState节点内容。
+    QGroupBox *setStateGroupBox = new QGroupBox( tr("设置交通灯当前的状态"),trafficLightPageWidget);
+    setStateGroupBox->setCheckable(true);
+
+    QLabel *stateLabel2 = new QLabel(tr("设置的状态"), this);
+    QLineEdit *stateLineEdite2 = new QLineEdit(this);
+
+    QGridLayout *setStateGridLayout = new QGridLayout(this);
+
+    setStateGridLayout->addWidget(stateLabel2,0,0);
+    setStateGridLayout->addWidget(stateLineEdite2,0,1);
+
+    setStateGroupBox->setLayout(setStateGridLayout);
+
+//    2.TrafficLight->SetPhase节点内容。
+    QGroupBox *setPhaseGroupBox = new QGroupBox( tr("设置交通灯的相位的时长"),trafficLightPageWidget);
+    setPhaseGroupBox->setCheckable(true);
+
+    QLabel *stateLabel3 = new QLabel(tr("设置的相位"), this);
+    QLineEdit *stateLineEdite3 = new QLineEdit(this);
+
+    QLabel *durationLabel = new QLabel(tr("设置持续时间"), this);
+    QLineEdit *durationLineEdite = new QLineEdit(this);
+
+    QGridLayout *setPhaseGridLayout = new QGridLayout(this);
+
+    setPhaseGridLayout->addWidget(stateLabel3,0,0);
+    setPhaseGridLayout->addWidget(stateLineEdite3,0,1);
+
+    setPhaseGridLayout->addWidget(durationLabel,1,0);
+    setPhaseGridLayout->addWidget(durationLineEdite,1,1);
+
+    setPhaseGroupBox->setLayout(setPhaseGridLayout);
+
+    QVBoxLayout *trafficLightLayout = new QVBoxLayout(trafficLightPageWidget);
+    trafficLightLayout->addWidget(idGroupBox2);
+    trafficLightLayout->addWidget(setStateGroupBox);
+    trafficLightLayout->addWidget(setPhaseGroupBox);
+
+    //Set
+    //Set->Trigger
+    QGroupBox *triggerGroupBox = new QGroupBox(tr("设置触发节点"),setPageWidget);
+    triggerGroupBox->setCheckable(true);
+
+    QGroupBox *ownerGroupBox = new QGroupBox(triggerGroupBox);
+    QLabel *ownerLabel = new QLabel(tr("该触发的所有者"));
+    QLineEdit *ownerLineEdite = new QLineEdit(this);
+
+    QGridLayout *ownerGridLayout = new QGridLayout(ownerGroupBox);
+    ownerGridLayout->addWidget(ownerLabel,0,0);
+    ownerGridLayout->addWidget(ownerLineEdite,0,1);
+
+    QGroupBox *nameGroupBox = new QGroupBox(triggerGroupBox);
+    QLabel *nameLabel = new QLabel(tr("该触发的名称"));
+    QLineEdit *nameLineEdite = new QLineEdit(this);
+
+    QGridLayout *nameGridLayout = new QGridLayout(nameGroupBox);
+    nameGridLayout->addWidget(nameLabel,0,0);
+    nameGridLayout->addWidget(nameLineEdite,0,1);
+
+//    Set->Trigger->Delete
+    QGroupBox *deleteGroupBox2 = new QGroupBox("删除节点",triggerGroupBox);
+    deleteGroupBox2->setCheckable(true);
+
+//    Set->Trigger->PosAbsolute
+    QGroupBox *posAbsGroupBox2 = new QGroupBox("绝对位置触发",triggerGroupBox);
+    posAbsGroupBox2->setCheckable(true);
+
+    QLabel *xLabel3 = new QLabel(tr("触发点的x坐标"));
+    QLineEdit *xLineEdite3 = new QLineEdit(this);
+
+    QLabel *yLabel3 = new QLabel(tr("触发点的y坐标"));
+    QLineEdit *yLineEdite3 = new QLineEdit(this);
+
+    QLabel *radiusLabel3 = new QLabel(tr("触发点的半径"));
+    QLineEdit *radiusLineEdite3 = new QLineEdit(this);
+
+    QGridLayout *posAbsGridLayout2 = new QGridLayout(posAbsGroupBox2);
+    posAbsGridLayout2->addWidget(xLabel3,0,0);
+    posAbsGridLayout2->addWidget(xLineEdite3,0,1);
+
+    posAbsGridLayout2->addWidget(yLabel3,1,0);
+    posAbsGridLayout2->addWidget(yLineEdite3,1,1);
+
+    posAbsGridLayout2->addWidget(radiusLabel3,2,0);
+    posAbsGridLayout2->addWidget(radiusLineEdite3,2,1);
+
+
+//  Set->Trigger->PosRelative
+    QGroupBox *posRelGroupBox3 = new QGroupBox("相对位置触发",triggerGroupBox);
+    posRelGroupBox3->setCheckable(true);
+
+    QLabel *relActLabel = new QLabel(tr("参考实体的 id/name"));
+    QLineEdit *relActLineEdite = new QLineEdit(this);
+
+    QLabel *disLabel2 = new QLabel(tr("几何距离"));
+    QLineEdit *disLineEdite2 = new QLineEdit(this);
+
+    QGridLayout *posRelGridLayout3 = new QGridLayout(posRelGroupBox3);
+    posRelGridLayout3->addWidget(relActLabel,0,0);
+    posRelGridLayout3->addWidget(relActLineEdite,0,1);
+
+    posRelGridLayout3->addWidget(disLabel2,0,0);
+    posRelGridLayout3->addWidget(disLineEdite2,0,1);
+
+//  Set->Trigger->TTCRelative
+    QGroupBox *TTCRelGroupBox = new QGroupBox("相对碰撞触发",triggerGroupBox);
+    TTCRelGroupBox->setCheckable(true);
+
+    QLabel *relActLabel2 = new QLabel(tr("参考实体的 id/name"));
+    QLineEdit *relActLineEdite2 = new QLineEdit(this);
+
+    QLabel *timeLabel2 = new QLabel(tr("参考实体的 id/name"));
+    QLineEdit *timeLineEdite2 = new QLineEdit(this);
+
+    QGridLayout *TTCRelGridLayout = new QGridLayout(TTCRelGroupBox);
+    TTCRelGridLayout->addWidget(relActLabel2,0,0);
+    TTCRelGridLayout->addWidget(relActLineEdite2,0,1);
+
+    TTCRelGridLayout->addWidget(timeLabel2,1,0);
+    TTCRelGridLayout->addWidget(timeLineEdite2,1,1);
+
+//    Set->Trigger->THRelative
+    QGroupBox *THRelGroupBox = new QGroupBox("车头时距触发",triggerGroupBox);
+    THRelGroupBox->setCheckable(true);
+
+    QLabel *relActLabel3 = new QLabel(tr("参考实体的 id/name"));
+    QLineEdit *relActLineEdite3 = new QLineEdit(this);
+
+    QLabel *timeLabel3 = new QLabel(tr("车头时距"));
+    QLineEdit *timeLineEdite3 = new QLineEdit(this);
+
+    QGridLayout *THRelGridLayout = new QGridLayout(THRelGroupBox);
+    THRelGridLayout->addWidget(relActLabel3,0,0);
+    THRelGridLayout->addWidget(relActLineEdite3,0,1);
+
+    THRelGridLayout->addWidget(timeLabel3,1,0);
+    THRelGridLayout->addWidget(timeLineEdite3,1,1);
+
+//    Set->Trigger->Speed
+    QGroupBox *spdGroupBox = new QGroupBox("速度触发",triggerGroupBox);
+    spdGroupBox->setCheckable(true);
+
+    QLabel *valueLabel2 = new QLabel(tr("速度触发的值"));
+    QLineEdit *valueLineEdite2 = new QLineEdit(this);
+
+    QLabel *valueLabel3 = new QLabel(tr("onExcess"));
+    QComboBox * valueCheckBox = new QComboBox(this);
+    valueCheckBox->addItems({"true","false"});
+
+    QGridLayout *spdGridLayout = new QGridLayout(spdGroupBox);
+    spdGridLayout->addWidget(valueLabel2,0,0);
+    spdGridLayout->addWidget(valueLabel2,0,1);
+
+    spdGridLayout->addWidget(valueLabel3,0,0);
+    spdGridLayout->addWidget(valueCheckBox,0,1);
 
 
 
 
 
+    //Animator
+    //1. Animator->PosistionRelative
+    QGroupBox *posRelGroupBox2 = new QGroupBox( tr("摄像头相对于主车的相对位置"),animatorPageWidget);
+    posRelGroupBox2->setCheckable(true);
+
+    QLabel *idLabel3 = new QLabel(tr("实体的id"));
+    QLineEdit *idLineEdite3 = new QLineEdit(this);
+
+    QLabel *dxLabel2 = new QLabel(tr("相对本车的x坐标"));
+    QLineEdit *dxLineEdite2 = new QLineEdit(this);
+
+    QLabel *dyLabel2 = new QLabel(tr("相对本车的y坐标"));
+    QLineEdit *dyLineEdite2 = new QLineEdit(this);
+
+    QLabel *dzLabel2 = new QLabel(tr("相对本车的z坐标"));
+    QLineEdit *dzLineEdite2 = new QLineEdit(this);
+
+    QLabel *dhDegLabel2 = new QLabel(tr("相对本车的h角度"));
+    QLineEdit *dhDegLineEdite2 = new QLineEdit(this);
+
+    QLabel *dpDegLabel2 = new QLabel(tr("相对本车的p角度"));
+    QLineEdit *dpDegLineEdite2 = new QLineEdit(this);
+
+    QLabel *drDegLabel2 = new QLabel(tr("相对本车的r角度"));
+    QLineEdit *drDegLineEdite2 = new QLineEdit(this);
+
+    QGridLayout *posRelGridLayout2 = new QGridLayout();
+
+    posRelGridLayout2->addWidget(idLabel3,0,0);
+    posRelGridLayout2->addWidget(idLineEdite3,0,1);
+
+    posRelGridLayout2->addWidget(dxLabel2,1,0);
+    posRelGridLayout2->addWidget(dxLineEdite2,1,1);
+
+    posRelGridLayout2->addWidget(dyLabel2,2,0);
+    posRelGridLayout2->addWidget(dyLineEdite2,2,1);
+
+    posRelGridLayout2->addWidget(dzLabel2,3,0);
+    posRelGridLayout2->addWidget(dzLineEdite2,3,1);
+
+    posRelGridLayout2->addWidget(dhDegLabel2,4,0);
+    posRelGridLayout2->addWidget(dhDegLineEdite2,4,1);
+
+    posRelGridLayout2->addWidget(dpDegLabel2,5,0);
+    posRelGridLayout2->addWidget(dpDegLineEdite2,5,1);
+
+    posRelGridLayout2->addWidget(drDegLabel2,6,0);
+    posRelGridLayout2->addWidget(drDegLineEdite2,6,1);
+
+    posRelGroupBox2->setLayout(posRelGridLayout2);
+
+    //2. Animator->FOV
+    QGroupBox *FOVGroupBox = new QGroupBox(tr("FOV显示"),animatorPageWidget);
+    FOVGroupBox->setCheckable(true);
+
+    QLabel *showLabel = new QLabel(tr("显示"), this);
+    QLineEdit *showLineEdite = new QLineEdit(this);
+
+    QLabel *actorLabel6 = new QLabel(tr("id"), this);
+    QLineEdit *actorLineEdite6 = new QLineEdit(this);
+
+    QGridLayout *FOVGridLayout = new QGridLayout(this);
+
+    FOVGridLayout->addWidget(showLabel,0,0);
+    FOVGridLayout->addWidget(showLineEdite,0,1);
+
+    FOVGridLayout->addWidget(actorLabel6,1,0);
+    FOVGridLayout->addWidget(actorLineEdite6,1,1);
+
+    FOVGroupBox->setLayout(FOVGridLayout);
+
+    QVBoxLayout *animatorLayout = new QVBoxLayout(animatorPageWidget);
+
+    animatorLayout->addWidget(posRelGroupBox2);
+    animatorLayout->addWidget(FOVGroupBox);
 
 }
 

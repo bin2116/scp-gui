@@ -658,7 +658,7 @@ MyWidget::MyWidget(QWidget *parent)
     QGroupBox *weatherGroupBox = new QGroupBox(tr("天气节点"),environmentGroupBox);
     weatherGroupBox->setCheckable(true);
 
-    QGroupBox *cloudStateGroupBox = new QGroupBox(tr("天气节点"),weatherGroupBox);
+    QGroupBox *cloudStateGroupBox = new QGroupBox(weatherGroupBox);
     QLabel *cloudStateLabel = new QLabel(tr("天空云层类型"));
     QLineEdit *cloudStateLineEdit = new QLineEdit();
 
@@ -865,12 +865,21 @@ MyWidget::MyWidget(QWidget *parent)
 
 
 
-    QVBoxLayout *envLayout = new QVBoxLayout(environmentGroupBox);
-    envLayout->addWidget(sunGroupBox0);
-    envLayout->addWidget(timeOfDayGroupBox);
-    envLayout->addWidget(weatherGroupBox);
-    envLayout->addWidget(roadConGroupBox);
-    envLayout->addWidget(propertiesGroupBox);
+    QVBoxLayout *envLayout = new QVBoxLayout(environmentActionPageWidget);
+    envLayout->addWidget(environmentGroupBox);
+
+    QVBoxLayout *layout3 = new QVBoxLayout(environmentGroupBox);
+    layout3->addWidget(sunGroupBox0);
+    layout3->addWidget(timeOfDayGroupBox);
+    layout3->addWidget(weatherGroupBox);
+    layout3->addWidget(roadConGroupBox);
+    layout3->addWidget(propertiesGroupBox);
+
+//    envLayout->addWidget(sunGroupBox0);
+//    envLayout->addWidget(timeOfDayGroupBox);
+//    envLayout->addWidget(weatherGroupBox);
+//    envLayout->addWidget(roadConGroupBox);
+//    envLayout->addWidget(propertiesGroupBox);
 
     QVBoxLayout *weatherVLayout = new QVBoxLayout(weatherGroupBox);
     weatherVLayout->addWidget(cloudStateGroupBox);
@@ -1009,8 +1018,8 @@ MyWidget::MyWidget(QWidget *parent)
     posRelGridLayout3->addWidget(relActLabel,0,0);
     posRelGridLayout3->addWidget(relActLineEdite,0,1);
 
-    posRelGridLayout3->addWidget(disLabel2,0,0);
-    posRelGridLayout3->addWidget(disLineEdite2,0,1);
+    posRelGridLayout3->addWidget(disLabel2,1,0);
+    posRelGridLayout3->addWidget(disLineEdite2,1,1);
 
 //  Set->Trigger->TTCRelative
     QGroupBox *TTCRelGroupBox = new QGroupBox("相对碰撞触发",triggerGroupBox);
@@ -1053,18 +1062,30 @@ MyWidget::MyWidget(QWidget *parent)
     QLabel *valueLabel2 = new QLabel(tr("速度触发的值"));
     QLineEdit *valueLineEdite2 = new QLineEdit(this);
 
-    QLabel *valueLabel3 = new QLabel(tr("onExcess"));
+    QLabel *valueLabel3 = new QLabel(tr("true:超过该值时触发;\nfalse:小于该值时触发"));
     QComboBox * valueCheckBox = new QComboBox(this);
     valueCheckBox->addItems({"true","false"});
 
     QGridLayout *spdGridLayout = new QGridLayout(spdGroupBox);
     spdGridLayout->addWidget(valueLabel2,0,0);
-    spdGridLayout->addWidget(valueLabel2,0,1);
+    spdGridLayout->addWidget(valueLineEdite2,0,1);
 
-    spdGridLayout->addWidget(valueLabel3,0,0);
-    spdGridLayout->addWidget(valueCheckBox,0,1);
+    spdGridLayout->addWidget(valueLabel3,1,0);
+    spdGridLayout->addWidget(valueCheckBox,1,1);
 
 
+    QVBoxLayout *setPageLayout = new QVBoxLayout(setPageWidget);
+    setPageLayout->addWidget(triggerGroupBox);
+
+    QVBoxLayout *triggerLayout = new QVBoxLayout(triggerGroupBox);
+    triggerLayout->addWidget(ownerGroupBox);
+    triggerLayout->addWidget(nameGroupBox);
+    triggerLayout->addWidget(deleteGroupBox2);
+    triggerLayout->addWidget(posAbsGroupBox2);
+    triggerLayout->addWidget(posRelGroupBox3);
+    triggerLayout->addWidget(TTCRelGroupBox);
+    triggerLayout->addWidget(THRelGroupBox);
+    triggerLayout->addWidget(spdGroupBox);
 
 
 
@@ -1124,7 +1145,9 @@ MyWidget::MyWidget(QWidget *parent)
     FOVGroupBox->setCheckable(true);
 
     QLabel *showLabel = new QLabel(tr("显示"), this);
-    QLineEdit *showLineEdite = new QLineEdit(this);
+    QComboBox *showComBox = new QComboBox(this);
+    showComBox->addItems({"0","1"});
+//    QLineEdit *showLineEdite = new QLineEdit(this);
 
     QLabel *actorLabel6 = new QLabel(tr("id"), this);
     QLineEdit *actorLineEdite6 = new QLineEdit(this);
@@ -1132,7 +1155,8 @@ MyWidget::MyWidget(QWidget *parent)
     QGridLayout *FOVGridLayout = new QGridLayout(this);
 
     FOVGridLayout->addWidget(showLabel,0,0);
-    FOVGridLayout->addWidget(showLineEdite,0,1);
+    FOVGridLayout->addWidget(showComBox,0,1);
+//    FOVGridLayout->addWidget(showLineEdite,0,1);
 
     FOVGridLayout->addWidget(actorLabel6,1,0);
     FOVGridLayout->addWidget(actorLineEdite6,1,1);
@@ -1140,6 +1164,8 @@ MyWidget::MyWidget(QWidget *parent)
     FOVGroupBox->setLayout(FOVGridLayout);
 
     QVBoxLayout *animatorLayout = new QVBoxLayout(animatorPageWidget);
+
+
 
     animatorLayout->addWidget(posRelGroupBox2);
     animatorLayout->addWidget(FOVGroupBox);

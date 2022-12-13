@@ -15,8 +15,7 @@ MyWidget::MyWidget(QWidget *parent)
     , ui(new Ui::MyWidget)
 {
     ui->setupUi(this);
-    resize(400,600);
-
+//    resize(500,600);
     QComboBox * scp_combox = new QComboBox(this);
     scp_combox->addItems({"Traffic", "Player", "EnvironmentAction", "TrafficLight", "Set", "Animator"});
 
@@ -28,7 +27,6 @@ MyWidget::MyWidget(QWidget *parent)
     QWidget *trafficLightPageWidget = new QWidget(stackedWidget);
     QWidget *setPageWidget = new QWidget(stackedWidget);
     QWidget *animatorPageWidget = new QWidget(stackedWidget);
-
     stackedWidget->addWidget(trafficPageWidget);
     stackedWidget->addWidget(playerPageWidget);
     stackedWidget->addWidget(environmentActionPageWidget);
@@ -46,6 +44,7 @@ MyWidget::MyWidget(QWidget *parent)
     scrollArea->setWidget(stackedWidget);
     scrollArea->setWidgetResizable(true);
 
+    scrollArea->setWidgetResizable(true);
     layout->addWidget(scrollArea);
 
 //        1. traffic->ActionSpeedChange节点内容
@@ -198,7 +197,10 @@ MyWidget::MyWidget(QWidget *parent)
     QLineEdit *centralActorLineEdit = new QLineEdit();
 
     QLabel *enableLabel = new QLabel(tr("是否开启随机交通"));
-    QLineEdit *enableLineEdit = new QLineEdit();
+//    QLineEdit *enableLineEdit = new QLineEdit();
+    QComboBox *enableCombox = new QComboBox();
+    enableCombox->addItems({"false","true"});
+
 
     QLabel *semiMajorAxisLabel = new QLabel(tr("长轴半径"));
     QLineEdit *semiMajorAxisLineEdit = new QLineEdit();
@@ -221,7 +223,7 @@ MyWidget::MyWidget(QWidget *parent)
     trafficSwarmActGridLayout->addWidget(centralActorLineEdit,0,1,1,1);
 
     trafficSwarmActGridLayout->addWidget(enableLabel,1,0,1,1);
-    trafficSwarmActGridLayout->addWidget(enableLineEdit,1,1,1,1);
+    trafficSwarmActGridLayout->addWidget(enableCombox,1,1,1,1);
 
     trafficSwarmActGridLayout->addWidget(semiMajorAxisLabel,2,0,1,1);
     trafficSwarmActGridLayout->addWidget(semiMajorAxisLineEdit,2,1,1,1);
@@ -318,23 +320,26 @@ MyWidget::MyWidget(QWidget *parent)
 
     actionPathGroupBox->setLayout(actionPathGridLayout);
 
-    QVBoxLayout *layout2 = new QVBoxLayout(trafficPageWidget);
+    QVBoxLayout *trafficlayout = new QVBoxLayout(trafficPageWidget);
+//    layout2->setSizeConstraint(QLayout::SetFixedSize);
+    trafficlayout->setAlignment(Qt::AlignTop);
 
-    layout2->addWidget(actSpdChgGroupBox);
-    layout2->addWidget(actRelSpdChgGroupBox);
-    layout2->addWidget(actLaneChgGroupBox);
-    layout2->addWidget(actLongiDisGroupBox);
-    layout2->addWidget(actLateralDisGroupBox);
-    layout2->addWidget(trafficSwarmActGroupBox);
-    layout2->addWidget(trafficSwarmResetGroupBox);
-    layout2->addWidget(pauseGroupBox);
-    layout2->addWidget(runGroupBox);
-    layout2->addWidget(actAutoGroupBox);
-    layout2->addWidget(actTraGroupBox);
-    layout2->addWidget(actionPathGroupBox);
+    trafficlayout->addWidget(actSpdChgGroupBox);
+    trafficlayout->addWidget(actRelSpdChgGroupBox);
+    trafficlayout->addWidget(actLaneChgGroupBox);
+    trafficlayout->addWidget(actLongiDisGroupBox);
+    trafficlayout->addWidget(actLateralDisGroupBox);
+    trafficlayout->addWidget(trafficSwarmActGroupBox);
+    trafficlayout->addWidget(trafficSwarmResetGroupBox);
+    trafficlayout->addWidget(pauseGroupBox);
+    trafficlayout->addWidget(runGroupBox);
+    trafficlayout->addWidget(actAutoGroupBox);
+    trafficlayout->addWidget(actTraGroupBox);
+    trafficlayout->addWidget(actionPathGroupBox);
 
     //Player
     QGroupBox *idGroupBox = new QGroupBox(playerPageWidget);
+    idGroupBox->setStyleSheet("QGroupBox{border:none}");
 
     QLabel *idLabel = new QLabel(tr("实体的id"), this);
     QLineEdit *idLineEdite = new QLineEdit(this);
@@ -599,6 +604,8 @@ MyWidget::MyWidget(QWidget *parent)
     posRelGroupBox->setLayout(posRelGridLayout);
 
     QVBoxLayout *playerPagelayout = new QVBoxLayout(playerPageWidget);
+//    playerPagelayout->setSizeConstraint(QLayout::SetFixedSize);
+    playerPagelayout->setAlignment(Qt::AlignTop);
 
     playerPagelayout->addWidget(idGroupBox);
     playerPagelayout->addWidget(deleteGroupBox);
@@ -627,6 +634,7 @@ MyWidget::MyWidget(QWidget *parent)
     sunGridLayout0->addWidget(sunTypeLabel0,0,0);
     sunGridLayout0->addWidget(sunTypeLabelLineEdit,0,1);
 
+    sunGroupBox0->setStyleSheet("QGroupBox{border:none}");
 
 
 
@@ -667,6 +675,8 @@ MyWidget::MyWidget(QWidget *parent)
     cloudStateGridLayout->addWidget(cloudStateLabel,0,0);
     cloudStateGridLayout->addWidget(cloudStateLineEdit,0,1);
 
+    cloudStateGroupBox->setStyleSheet("QGroupBox{border:none}");
+
     //    QGridLayout *weatherGridLayout = new QGridLayout(weatherGroupBox);
 
     //    weatherGridLayout->addWidget(cloudStateLabel,0,0);
@@ -702,6 +712,7 @@ MyWidget::MyWidget(QWidget *parent)
     fogGroupBox->setCheckable(true);
 
     QGroupBox *typeGroupBox = new QGroupBox(fogGroupBox);
+    typeGroupBox->setStyleSheet("QGroupBox{border:none}");
     QLabel *typeLabel = new QLabel(tr("雾类型"));
     QLineEdit *typeLineEdit = new QLineEdit();
 
@@ -710,6 +721,7 @@ MyWidget::MyWidget(QWidget *parent)
     typeGridLayout->addWidget(typeLineEdit,0,1);
 
     QGroupBox *fogRangeGroupBox = new QGroupBox(fogGroupBox);
+    fogRangeGroupBox->setStyleSheet("QGroupBox{border:none}");
     QLabel *fogRangeLabel = new QLabel(tr("范围"));
     QLineEdit *fogRangeLineEdit = new QLineEdit();
 
@@ -718,6 +730,7 @@ MyWidget::MyWidget(QWidget *parent)
     fogRangeGridLayout->addWidget(fogRangeLineEdit,0,1);
 
     QGroupBox *visualRangeGroupBox = new QGroupBox(fogGroupBox);
+    visualRangeGroupBox->setStyleSheet("QGroupBox{border:none}");
     QLabel *visualRangeLabel = new QLabel(tr("可视距离"));
     QLineEdit *visualRangeLineEdit = new QLineEdit();
 
@@ -867,6 +880,9 @@ MyWidget::MyWidget(QWidget *parent)
 
     QVBoxLayout *envLayout = new QVBoxLayout(environmentActionPageWidget);
     envLayout->addWidget(environmentGroupBox);
+//    envLayout->setSizeConstraint(QLayout::SetFixedSize);
+    envLayout->setAlignment(Qt::AlignTop);
+
 
     QVBoxLayout *layout3 = new QVBoxLayout(environmentGroupBox);
     layout3->addWidget(sunGroupBox0);
@@ -914,8 +930,9 @@ MyWidget::MyWidget(QWidget *parent)
     idGridLayout2->addWidget(idLabel2,0,0);
     idGridLayout2->addWidget(idLineEdite2,0,1);
 
-    idGroupBox2->setLayout(idGridLayout2);
 
+    idGroupBox2->setLayout(idGridLayout2);
+    idGroupBox2->setStyleSheet("QGroupBox{border:none}");
 //    1.TrafficLight->SetState节点内容。
     QGroupBox *setStateGroupBox = new QGroupBox( tr("设置交通灯当前的状态"),trafficLightPageWidget);
     setStateGroupBox->setCheckable(true);
@@ -951,6 +968,10 @@ MyWidget::MyWidget(QWidget *parent)
     setPhaseGroupBox->setLayout(setPhaseGridLayout);
 
     QVBoxLayout *trafficLightLayout = new QVBoxLayout(trafficLightPageWidget);
+//    trafficLightLayout->setSizeConstraint(QLayout::SetFixedSize);
+    trafficLightLayout->setAlignment(Qt::AlignTop);
+
+
     trafficLightLayout->addWidget(idGroupBox2);
     trafficLightLayout->addWidget(setStateGroupBox);
     trafficLightLayout->addWidget(setPhaseGroupBox);
@@ -1076,6 +1097,8 @@ MyWidget::MyWidget(QWidget *parent)
 
     QVBoxLayout *setPageLayout = new QVBoxLayout(setPageWidget);
     setPageLayout->addWidget(triggerGroupBox);
+//    setPageLayout->setSizeConstraint(QLayout::SetFixedSize);
+    setPageLayout->setAlignment(Qt::AlignTop);
 
     QVBoxLayout *triggerLayout = new QVBoxLayout(triggerGroupBox);
     triggerLayout->addWidget(ownerGroupBox);
@@ -1153,7 +1176,6 @@ MyWidget::MyWidget(QWidget *parent)
     QLineEdit *actorLineEdite6 = new QLineEdit(this);
 
     QGridLayout *FOVGridLayout = new QGridLayout(this);
-
     FOVGridLayout->addWidget(showLabel,0,0);
     FOVGridLayout->addWidget(showComBox,0,1);
 //    FOVGridLayout->addWidget(showLineEdite,0,1);
@@ -1163,12 +1185,14 @@ MyWidget::MyWidget(QWidget *parent)
 
     FOVGroupBox->setLayout(FOVGridLayout);
 
+
     QVBoxLayout *animatorLayout = new QVBoxLayout(animatorPageWidget);
-
-
-
+//    animatorLayout->setSizeConstraint(QLayout::SetFixedSize);
+    animatorLayout->setAlignment(Qt::AlignTop);
     animatorLayout->addWidget(posRelGroupBox2);
     animatorLayout->addWidget(FOVGroupBox);
+
+    this->adjustSize();
 
 }
 

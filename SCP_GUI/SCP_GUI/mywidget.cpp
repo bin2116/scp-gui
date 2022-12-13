@@ -305,7 +305,10 @@ MyWidget::MyWidget(QWidget *parent)
     QLineEdit *pathShapeLineEdit = new QLineEdit();
 
     QLabel *loopLabel = new QLabel(tr("沿路线循环行驶"));
-    QLineEdit *loopLineEdit = new QLineEdit();
+//    QLineEdit *loopLineEdit = new QLineEdit();
+    QComboBox *loopComBox = new QComboBox(this);
+    loopComBox->addItems({"false","true"});
+
 
     QGridLayout *actionPathGridLayout = new QGridLayout();
 
@@ -316,7 +319,7 @@ MyWidget::MyWidget(QWidget *parent)
     actionPathGridLayout->addWidget(pathShapeLineEdit,1,1,1,1);
 
     actionPathGridLayout->addWidget(loopLabel,2,0,1,1);
-    actionPathGridLayout->addWidget(loopLineEdit,2,1,1,1);
+    actionPathGridLayout->addWidget(loopComBox,2,1,1,1);
 
     actionPathGroupBox->setLayout(actionPathGridLayout);
 
@@ -396,7 +399,9 @@ MyWidget::MyWidget(QWidget *parent)
     creatGroupBox->setCheckable(true);
 
     QLabel *categoryLabel = new QLabel(tr("新建实体的类别"), this);
-    QLineEdit *categoryLineEdite = new QLineEdit(this);
+//    QLineEdit *categoryLineEdite = new QLineEdit(this);
+    QComboBox *categoryComBox = new QComboBox(this);
+    categoryComBox->addItems({"vehicle","pedestrian","object"});
 
     QLabel *modelLabel = new QLabel(tr("车辆3D模型名称"), this);
     QLineEdit *modelLineEdite = new QLineEdit(this);
@@ -425,7 +430,7 @@ MyWidget::MyWidget(QWidget *parent)
     QGridLayout *creatGridLayout = new QGridLayout();
 
     creatGridLayout->addWidget(categoryLabel,0,0);
-    creatGridLayout->addWidget(categoryLineEdite,0,1);
+    creatGridLayout->addWidget(categoryComBox,0,1);
 
     creatGridLayout->addWidget(modelLabel,1,0);
     creatGridLayout->addWidget(modelLineEdite,1,1);
@@ -458,18 +463,22 @@ MyWidget::MyWidget(QWidget *parent)
     leftTurnLightGroupBox->setCheckable(true);
 
     QLabel *stateLabel = new QLabel(tr("状态"), this);
-    QLineEdit *stateLineEdite = new QLineEdit(this);
+//    QLineEdit *stateLineEdite = new QLineEdit(this);
+    QComboBox *stateComBox = new QComboBox(this);
+    stateComBox->addItems({"0","1"});
 
     QLabel *stateMaskLabel = new QLabel(tr("是否覆盖自动给的转向状态"), this);
-    QLineEdit *stateMaskLineEdite = new QLineEdit(this);
+//    QLineEdit *stateMaskLineEdite = new QLineEdit(this);
+    QComboBox *stateMaskComBox = new QComboBox(this);
+    stateMaskComBox->addItems({"0","1"});
 
     QGridLayout * leftTurnLightGridLayout = new QGridLayout(this);
 
     leftTurnLightGridLayout->addWidget(stateLabel,0,0);
-    leftTurnLightGridLayout->addWidget(stateLineEdite,0,1);
+    leftTurnLightGridLayout->addWidget(stateComBox,0,1);
 
     leftTurnLightGridLayout->addWidget(stateMaskLabel,1,0);
-    leftTurnLightGridLayout->addWidget(stateMaskLineEdite,1,1);
+    leftTurnLightGridLayout->addWidget(stateMaskComBox,1,1);
 
     leftTurnLightGroupBox->setLayout(leftTurnLightGridLayout);
 
@@ -478,18 +487,22 @@ MyWidget::MyWidget(QWidget *parent)
     rightTurnLightGroupBox->setCheckable(true);
 
     QLabel *stateLabel5 = new QLabel(tr("状态"), this);
-    QLineEdit *stateLineEdite5 = new QLineEdit(this);
+//    QLineEdit *stateLineEdite5 = new QLineEdit(this);
+    QComboBox *stateComBox5 = new QComboBox(this);
+    stateComBox5->addItems({"0","1"});
 
     QLabel *stateMaskLabel5 = new QLabel(tr("是否覆盖自动给的转向状态"), this);
-    QLineEdit *stateMaskLineEdite5 = new QLineEdit(this);
+//    QLineEdit *stateMaskLineEdite5 = new QLineEdit(this);
+    QComboBox *stateMaskComBox5 = new QComboBox(this);
+    stateMaskComBox5->addItems({"0","1"});
 
     QGridLayout * rightTurnLightGridLayout = new QGridLayout(this);
 
     rightTurnLightGridLayout->addWidget(stateLabel5,0,0);
-    rightTurnLightGridLayout->addWidget(stateLineEdite5,0,1);
+    rightTurnLightGridLayout->addWidget(stateComBox5,0,1);
 
     rightTurnLightGridLayout->addWidget(stateMaskLabel5,1,0);
-    rightTurnLightGridLayout->addWidget(stateMaskLineEdite5,1,1);
+    rightTurnLightGridLayout->addWidget(stateMaskComBox5,1,1);
 
     rightTurnLightGroupBox->setLayout(rightTurnLightGridLayout);
 
@@ -498,18 +511,22 @@ MyWidget::MyWidget(QWidget *parent)
     headLightGroupBox->setCheckable(true);
 
     QLabel *stateLabel6 = new QLabel(tr("状态"), this);
-    QLineEdit *stateLineEdite6 = new QLineEdit(this);
+//    QLineEdit *stateLineEdite6 = new QLineEdit(this);
+    QComboBox *stateComBox6 = new QComboBox(this);
+    stateComBox6->addItems({"0","1"});
 
     QLabel *stateMaskLabel6 = new QLabel(tr("是否覆盖自动给的头灯状态"), this);
-    QLineEdit *stateMaskLineEdite6 = new QLineEdit(this);
+//    QLineEdit *stateMaskLineEdite6 = new QLineEdit(this);
+    QComboBox *stateMaskComBox6 = new QComboBox(this);
+    stateMaskComBox6->addItems({"0","1"});
 
     QGridLayout * headLightGridLayout = new QGridLayout(this);
 
     headLightGridLayout->addWidget(stateLabel6,0,0);
-    headLightGridLayout->addWidget(stateLineEdite6,0,1);
+    headLightGridLayout->addWidget(stateComBox6,0,1);
 
     headLightGridLayout->addWidget(stateMaskLabel6,1,0);
-    headLightGridLayout->addWidget(stateMaskLineEdite6,1,1);
+    headLightGridLayout->addWidget(stateMaskComBox6,1,1);
 
     headLightGroupBox->setLayout(headLightGridLayout);
 
@@ -518,18 +535,22 @@ MyWidget::MyWidget(QWidget *parent)
     brakeLightGroupBox->setCheckable(true);
 
     QLabel *stateLabel7 = new QLabel(tr("状态"), this);
-    QLineEdit *stateLineEdite7 = new QLineEdit(this);
+//    QLineEdit *stateLineEdite7 = new QLineEdit(this);
+    QComboBox *stateComBox7 = new QComboBox(this);
+    stateComBox7->addItems({"0","1"});
 
     QLabel *stateMaskLabel7 = new QLabel(tr("是否覆盖自动给的制动状态"), this);
-    QLineEdit *stateMaskLineEdite7 = new QLineEdit(this);
+//    QLineEdit *stateMaskLineEdite7 = new QLineEdit(this);
+    QComboBox *stateMaskComBox7 = new QComboBox(this);
+    stateMaskComBox7->addItems({"0","1"});
 
     QGridLayout * brakeLightGridLayout = new QGridLayout(this);
 
     brakeLightGridLayout->addWidget(stateLabel7,0,0);
-    brakeLightGridLayout->addWidget(stateLineEdite7,0,1);
+    brakeLightGridLayout->addWidget(stateComBox7,0,1);
 
     brakeLightGridLayout->addWidget(stateMaskLabel7,1,0);
-    brakeLightGridLayout->addWidget(stateMaskLineEdite7,1,1);
+    brakeLightGridLayout->addWidget(stateMaskComBox7,1,1);
 
     brakeLightGroupBox->setLayout(brakeLightGridLayout);
 
@@ -627,12 +648,14 @@ MyWidget::MyWidget(QWidget *parent)
 
     QGroupBox *sunGroupBox0 = new QGroupBox(environmentGroupBox);
     QLabel *sunTypeLabel0 = new QLabel(tr("太阳类型"));
-    QLineEdit *sunTypeLabelLineEdit = new QLineEdit();
+//    QLineEdit *sunTypeLabelLineEdit = new QLineEdit();
+    QComboBox *sunTypeComBox = new QComboBox(this);
+    sunTypeComBox->addItems({"sun","time"});
 
     QGridLayout *sunGridLayout0 = new QGridLayout(sunGroupBox0);
 
     sunGridLayout0->addWidget(sunTypeLabel0,0,0);
-    sunGridLayout0->addWidget(sunTypeLabelLineEdit,0,1);
+    sunGridLayout0->addWidget(sunTypeComBox,0,1);
 
     sunGroupBox0->setStyleSheet("QGroupBox{border:none}");
 
@@ -648,7 +671,9 @@ MyWidget::MyWidget(QWidget *parent)
     timeOfDayGroupBox->setCheckable(true);
 
     QLabel *animationLabel = new QLabel(tr("时间流动"));
-    QLineEdit *animationLineEdit = new QLineEdit();
+//    QLineEdit *animationLineEdit = new QLineEdit();
+    QComboBox *animationComBox = new QComboBox(this);
+    animationComBox->addItems({"false","true"});
 
     QLabel *dateTimeLabel = new QLabel(tr("日期时间"));
     QLineEdit *dateTimeLineEdit = new QLineEdit();
@@ -656,7 +681,7 @@ MyWidget::MyWidget(QWidget *parent)
     QGridLayout *timeOfDayGridLayout = new QGridLayout(timeOfDayGroupBox);
 
     timeOfDayGridLayout->addWidget(animationLabel,0,0);
-    timeOfDayGridLayout->addWidget(animationLineEdit,0,1);
+    timeOfDayGridLayout->addWidget(animationComBox,0,1);
 
     timeOfDayGridLayout->addWidget(dateTimeLabel,1,0);
     timeOfDayGridLayout->addWidget(dateTimeLineEdit,1,1);
@@ -668,12 +693,15 @@ MyWidget::MyWidget(QWidget *parent)
 
     QGroupBox *cloudStateGroupBox = new QGroupBox(weatherGroupBox);
     QLabel *cloudStateLabel = new QLabel(tr("天空云层类型"));
-    QLineEdit *cloudStateLineEdit = new QLineEdit();
+//    QLineEdit *cloudStateLineEdit = new QLineEdit();
+    QComboBox *cloudStateComBox = new QComboBox(this);
+    cloudStateComBox->addItems({"skyOff","free","cloudy",
+                                "over","cast","rainy"});
 
 
     QGridLayout *cloudStateGridLayout = new QGridLayout(cloudStateGroupBox);
     cloudStateGridLayout->addWidget(cloudStateLabel,0,0);
-    cloudStateGridLayout->addWidget(cloudStateLineEdit,0,1);
+    cloudStateGridLayout->addWidget(cloudStateComBox,0,1);
 
     cloudStateGroupBox->setStyleSheet("QGroupBox{border:none}");
 
@@ -714,20 +742,24 @@ MyWidget::MyWidget(QWidget *parent)
     QGroupBox *typeGroupBox = new QGroupBox(fogGroupBox);
     typeGroupBox->setStyleSheet("QGroupBox{border:none}");
     QLabel *typeLabel = new QLabel(tr("雾类型"));
-    QLineEdit *typeLineEdit = new QLineEdit();
+//    QLineEdit *typeLineEdit = new QLineEdit();
+    QComboBox *typeComBox = new QComboBox(this);
+    typeComBox->addItems({"fog","dust"});
 
     QGridLayout *typeGridLayout = new QGridLayout(typeGroupBox);
     typeGridLayout->addWidget(typeLabel,0,0);
-    typeGridLayout->addWidget(typeLineEdit,0,1);
+    typeGridLayout->addWidget(typeComBox,0,1);
 
     QGroupBox *fogRangeGroupBox = new QGroupBox(fogGroupBox);
     fogRangeGroupBox->setStyleSheet("QGroupBox{border:none}");
     QLabel *fogRangeLabel = new QLabel(tr("范围"));
-    QLineEdit *fogRangeLineEdit = new QLineEdit();
+//    QLineEdit *fogRangeLineEdit = new QLineEdit();
+    QComboBox *fogRangeComBox = new QComboBox(this);
+    fogRangeComBox->addItems({"global","local"});
 
     QGridLayout *fogRangeGridLayout = new QGridLayout(fogRangeGroupBox);
     fogRangeGridLayout->addWidget(fogRangeLabel,0,0);
-    fogRangeGridLayout->addWidget(fogRangeLineEdit,0,1);
+    fogRangeGridLayout->addWidget(fogRangeComBox,0,1);
 
     QGroupBox *visualRangeGroupBox = new QGroupBox(fogGroupBox);
     visualRangeGroupBox->setStyleSheet("QGroupBox{border:none}");
@@ -812,8 +844,10 @@ MyWidget::MyWidget(QWidget *parent)
     QLabel *intensityLabel2 = new QLabel(tr("强度"));
     QLineEdit *intensityLineEdit2 = new QLineEdit();
 
-    QLabel *precLabel = new QLabel(tr("强度"));
-    QLineEdit *precLineEdit = new QLineEdit();
+    QLabel *precLabel = new QLabel(tr("下雨类型"));
+//    QLineEdit *precLineEdit = new QLineEdit();
+    QComboBox *precComBox = new QComboBox(this);
+    precComBox->addItems({"dry","rain","snow"});
 
     QGridLayout *precGridLayout = new QGridLayout(precGroupBox);
 
@@ -821,7 +855,7 @@ MyWidget::MyWidget(QWidget *parent)
     precGridLayout->addWidget(intensityLineEdit2,0,1);
 
     precGridLayout->addWidget(precLabel,1,0);
-    precGridLayout->addWidget(precLineEdit,1,1);
+    precGridLayout->addWidget(precComBox,1,1);
 
 //    EnvironmentAction->Environment->RoadCondition
     QGroupBox *roadConGroupBox = new QGroupBox(tr("路面条件"),environmentGroupBox);
@@ -847,7 +881,9 @@ MyWidget::MyWidget(QWidget *parent)
     QLineEdit *name1LineEdite = new QLineEdit(this);
 
     QLabel *value1Label = new QLabel(tr("value1 积水类型"), this);
-    QLineEdit *value1LineEdite = new QLineEdit(this);
+//    QLineEdit *value1LineEdite = new QLineEdit(this);
+    QComboBox *value1ComBox = new QComboBox(this);
+    value1ComBox->addItems({"dry","rain","snow"});
 
     QGridLayout *name1GridLayout = new QGridLayout(property1GroupBox);
 
@@ -855,7 +891,7 @@ MyWidget::MyWidget(QWidget *parent)
     name1GridLayout->addWidget(name1LineEdite,0,1);
 
     name1GridLayout->addWidget(value1Label,1,0);
-    name1GridLayout->addWidget(value1LineEdite,1,1);
+    name1GridLayout->addWidget(value1ComBox,1,1);
 
     //    EnvironmentAction->Environment->Properties->Property2
     QGroupBox *property2GroupBox = new QGroupBox(tr("属性二"),propertiesGroupBox);
@@ -938,12 +974,14 @@ MyWidget::MyWidget(QWidget *parent)
     setStateGroupBox->setCheckable(true);
 
     QLabel *stateLabel2 = new QLabel(tr("设置的状态"), this);
-    QLineEdit *stateLineEdite2 = new QLineEdit(this);
+//    QLineEdit *stateLineEdite2 = new QLineEdit(this);
+    QComboBox *stateComBox2 = new QComboBox(this);
+    stateComBox2->addItems({"stop","go","attention"});
 
     QGridLayout *setStateGridLayout = new QGridLayout(this);
 
     setStateGridLayout->addWidget(stateLabel2,0,0);
-    setStateGridLayout->addWidget(stateLineEdite2,0,1);
+    setStateGridLayout->addWidget(stateComBox2,0,1);
 
     setStateGroupBox->setLayout(setStateGridLayout);
 
@@ -952,7 +990,10 @@ MyWidget::MyWidget(QWidget *parent)
     setPhaseGroupBox->setCheckable(true);
 
     QLabel *stateLabel3 = new QLabel(tr("设置的相位"), this);
-    QLineEdit *stateLineEdite3 = new QLineEdit(this);
+//    QLineEdit *stateLineEdite3 = new QLineEdit(this);
+    QComboBox *stateComBox3 = new QComboBox(this);
+    stateComBox3->addItems({"stop","go","attention"});
+
 
     QLabel *durationLabel = new QLabel(tr("设置持续时间"), this);
     QLineEdit *durationLineEdite = new QLineEdit(this);
@@ -960,7 +1001,7 @@ MyWidget::MyWidget(QWidget *parent)
     QGridLayout *setPhaseGridLayout = new QGridLayout(this);
 
     setPhaseGridLayout->addWidget(stateLabel3,0,0);
-    setPhaseGridLayout->addWidget(stateLineEdite3,0,1);
+    setPhaseGridLayout->addWidget(stateComBox3,0,1);
 
     setPhaseGridLayout->addWidget(durationLabel,1,0);
     setPhaseGridLayout->addWidget(durationLineEdite,1,1);

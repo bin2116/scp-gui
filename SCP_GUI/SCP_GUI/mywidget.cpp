@@ -6,9 +6,12 @@
 #include <QGroupBox>
 #include <QLabel>
 #include <QLineEdit>
+#include <QPushButton>
 #include <QScrollArea>
 #include <QStackedWidget>
+#include <QTextEdit>
 #include <QVBoxLayout>
+#include <QtDebug>
 
 MyWidget::MyWidget(QWidget *parent)
     : QWidget(parent)
@@ -37,6 +40,7 @@ MyWidget::MyWidget(QWidget *parent)
     connect(scp_combox, SIGNAL(activated(int)),
             stackedWidget, SLOT(setCurrentIndex(int)));
 
+//    qDebug()<<scp_combox->currentText();
     QVBoxLayout *layout = new QVBoxLayout(this);
     layout->addWidget(scp_combox);
 
@@ -47,6 +51,15 @@ MyWidget::MyWidget(QWidget *parent)
     scrollArea->setWidgetResizable(true);
     layout->addWidget(scrollArea);
 
+    QTextEdit * messageTextEdit = new QTextEdit(this);
+    messageTextEdit->setReadOnly(true);
+    layout->addWidget(messageTextEdit);
+//    QLabel *messageLabel = new QLabel(this);
+//    layout->addWidget(messageLabel);
+
+
+    QPushButton * cretMessageBtn = new QPushButton("Create Message",this);
+    layout->addWidget(cretMessageBtn);
 //        1. traffic->ActionSpeedChange节点内容
     QGroupBox *actSpdChgGroupBox = new QGroupBox( tr("变速"),trafficPageWidget);
     actSpdChgGroupBox->setCheckable(true);
@@ -60,7 +73,7 @@ MyWidget::MyWidget(QWidget *parent)
     QLineEdit *rateLineEdite = new QLineEdit(this);
     QLabel *rateLabel = new QLabel(tr("最大加速度"));
 
-    QGridLayout *actSpdChgGridLayout = new QGridLayout();
+    QGridLayout *actSpdChgGridLayout = new QGridLayout(actSpdChgGroupBox);
 
     actSpdChgGridLayout->addWidget(actorLabel,0,0,1,1);
     actSpdChgGridLayout->addWidget(actorLineEdite,0,1,1,1);
@@ -71,7 +84,6 @@ MyWidget::MyWidget(QWidget *parent)
     actSpdChgGridLayout->addWidget(rateLabel,2,0,1,1);
     actSpdChgGridLayout->addWidget(rateLineEdite,2,1,1,1);
 
-    actSpdChgGroupBox->setLayout(actSpdChgGridLayout);
 
 //     2. traffic->ActionRelativeSpeedChange节点内容
     QGroupBox *actRelSpdChgGroupBox = new QGroupBox(tr("相对变速"),trafficPageWidget);
@@ -89,7 +101,7 @@ MyWidget::MyWidget(QWidget *parent)
     QLineEdit *ratetLineEdit2 = new QLineEdit(this);
     QLabel *rateLabel2 = new QLabel(tr("加速度"), this);
 
-    QGridLayout *actRelSpdChgGridLayout = new QGridLayout();
+    QGridLayout *actRelSpdChgGridLayout = new QGridLayout(actRelSpdChgGroupBox);
 
     actRelSpdChgGridLayout->addWidget(actorLabel2,0,0,1,1);
     actRelSpdChgGridLayout->addWidget(actorLineEdite2,0,1,1,1);
@@ -103,7 +115,6 @@ MyWidget::MyWidget(QWidget *parent)
     actRelSpdChgGridLayout->addWidget(rateLabel2,3,0,1,1);
     actRelSpdChgGridLayout->addWidget(ratetLineEdit2,3,1,1,1);
 
-    actRelSpdChgGroupBox->setLayout(actRelSpdChgGridLayout);
 
 //        3. traffic->ActionLaneChange节点内容
     QGroupBox *actLaneChgGroupBox = new QGroupBox(tr("变道"),trafficPageWidget);
@@ -118,7 +129,7 @@ MyWidget::MyWidget(QWidget *parent)
     QLabel *valueLabel = new QLabel(tr("变道数+(左换道)-(右换道)"));
     QLineEdit *valueLineEdit = new QLineEdit();
 
-    QGridLayout * actLaneChgGridLayout = new QGridLayout(this);
+    QGridLayout * actLaneChgGridLayout = new QGridLayout(actLaneChgGroupBox);
 
     actLaneChgGridLayout->addWidget(actorLabel3,0,0,1,1);
     actLaneChgGridLayout->addWidget(actLineEdite3,0,1,1,1);
@@ -150,7 +161,7 @@ MyWidget::MyWidget(QWidget *parent)
     QLabel *maxAccLabel = new QLabel(tr("最大加速度"));
     QLineEdit *maxAccLineEdit = new QLineEdit();
 
-    QGridLayout *actLongiDisGridLayout = new QGridLayout();
+    QGridLayout *actLongiDisGridLayout = new QGridLayout(actLongiDisGroupBox);
 
     actLongiDisGridLayout->addWidget(actorLabel4,0,0,1,1);
     actLongiDisGridLayout->addWidget(actorLineEdit4,0,1,1,1);
@@ -167,7 +178,6 @@ MyWidget::MyWidget(QWidget *parent)
     actLongiDisGridLayout->addWidget(maxAccLabel,4,0,1,1);
     actLongiDisGridLayout->addWidget(maxAccLineEdit,4,1,1,1);
 
-    actLongiDisGroupBox->setLayout(actLongiDisGridLayout);
 
 //    5. traffic->ActionLateralDistance节点内容
     QGroupBox *actLateralDisGroupBox = new QGroupBox(tr("横向追车"),trafficPageWidget);
@@ -179,7 +189,7 @@ MyWidget::MyWidget(QWidget *parent)
     QLabel *relativeactorLabel5 = new QLabel(tr("相对实体id"));
     QLineEdit *relativeactorLineEdit5 = new QLineEdit();
 
-    QGridLayout *actLateralDisGridLayout = new QGridLayout();
+    QGridLayout *actLateralDisGridLayout = new QGridLayout(actLateralDisGroupBox);
 
     actLateralDisGridLayout->addWidget(actorLabel5,0,0,1,1);
     actLateralDisGridLayout->addWidget(actorLineEdit,0,1,1,1);
@@ -187,7 +197,6 @@ MyWidget::MyWidget(QWidget *parent)
     actLateralDisGridLayout->addWidget(relativeactorLabel5,1,0,1,1);
     actLateralDisGridLayout->addWidget(relativeactorLineEdit5,1,1,1,1);
 
-    actLateralDisGroupBox->setLayout(actLateralDisGridLayout);
 
 //    6. traffic->TrafficSwarmAction节点内容
     QGroupBox *trafficSwarmActGroupBox = new QGroupBox(tr("随机交通"),trafficPageWidget);
@@ -217,7 +226,7 @@ MyWidget::MyWidget(QWidget *parent)
     QLabel *numberOfVehiclesLabel = new QLabel(tr("最大车辆数"));
     QLineEdit *numberOfVehiclesLineEdit = new QLineEdit();
 
-    QGridLayout *trafficSwarmActGridLayout = new QGridLayout();
+    QGridLayout *trafficSwarmActGridLayout = new QGridLayout(trafficSwarmActGroupBox);
 
     trafficSwarmActGridLayout->addWidget(centralActorLabel,0,0,1,1);
     trafficSwarmActGridLayout->addWidget(centralActorLineEdit,0,1,1,1);
@@ -240,7 +249,6 @@ MyWidget::MyWidget(QWidget *parent)
     trafficSwarmActGridLayout->addWidget(numberOfVehiclesLabel,6,0,1,1);
     trafficSwarmActGridLayout->addWidget(numberOfVehiclesLineEdit,6,1,1,1);
 
-    trafficSwarmActGroupBox->setLayout(trafficSwarmActGridLayout);
 
 //    7. traffic->TrafficSwarmReset节点内容
     QGroupBox *trafficSwarmResetGroupBox = new QGroupBox(tr("重置随机交通"),trafficPageWidget);
@@ -261,12 +269,11 @@ MyWidget::MyWidget(QWidget *parent)
     QLabel *actAutoLabel = new QLabel(tr("实体id"));
     QLineEdit *actAutoLineEdit = new QLineEdit();
 
-    QGridLayout *actAutoGridLayout = new QGridLayout();
+    QGridLayout *actAutoGridLayout = new QGridLayout(actAutoGroupBox);
 
     actAutoGridLayout->addWidget(actAutoLabel,0,0,1,1);
     actAutoGridLayout->addWidget(actAutoLineEdit,0,1,1,1);
 
-    actAutoGroupBox->setLayout(actAutoGridLayout);
 
 //    11. traffic->ActionTrajectory节点内容
     QGroupBox *actTraGroupBox = new QGroupBox(tr("激活轨迹模式"),trafficPageWidget);
@@ -281,7 +288,7 @@ MyWidget::MyWidget(QWidget *parent)
     QLabel *trajectoryLabel = new QLabel(tr("库中轨迹的名称"));
     QLineEdit *trajectoryLineEdit11 = new QLineEdit();
 
-    QGridLayout *actTraGridLayout = new QGridLayout();
+    QGridLayout *actTraGridLayout = new QGridLayout(actTraGroupBox);
 
     actTraGridLayout->addWidget(actorLabel11,0,0,1,1);
     actTraGridLayout->addWidget(actorLineEdit11,0,1,1,1);
@@ -292,7 +299,6 @@ MyWidget::MyWidget(QWidget *parent)
     actTraGridLayout->addWidget(trajectoryLabel,2,0,1,1);
     actTraGridLayout->addWidget(trajectoryLineEdit11,2,1,1,1);
 
-    actTraGroupBox->setLayout(actTraGridLayout);
 
 //    12. traffic->ActionPath节点内容
     QGroupBox *actionPathGroupBox = new QGroupBox(tr("设置自动驾驶模式行驶路线"),trafficPageWidget);
@@ -310,7 +316,7 @@ MyWidget::MyWidget(QWidget *parent)
     loopComBox->addItems({"false","true"});
 
 
-    QGridLayout *actionPathGridLayout = new QGridLayout();
+    QGridLayout *actionPathGridLayout = new QGridLayout(actionPathGroupBox);
 
     actionPathGridLayout->addWidget(actorLabel12,0,0,1,1);
     actionPathGridLayout->addWidget(actorLineEdit12,0,1,1,1);
@@ -321,7 +327,6 @@ MyWidget::MyWidget(QWidget *parent)
     actionPathGridLayout->addWidget(loopLabel,2,0,1,1);
     actionPathGridLayout->addWidget(loopComBox,2,1,1,1);
 
-    actionPathGroupBox->setLayout(actionPathGridLayout);
 
     QVBoxLayout *trafficlayout = new QVBoxLayout(trafficPageWidget);
 //    layout2->setSizeConstraint(QLayout::SetFixedSize);
@@ -347,11 +352,10 @@ MyWidget::MyWidget(QWidget *parent)
     QLabel *idLabel = new QLabel(tr("实体的id"), this);
     QLineEdit *idLineEdite = new QLineEdit(this);
 
-    QGridLayout *idGridLayout = new QGridLayout();
+    QGridLayout *idGridLayout = new QGridLayout(idGroupBox);
     idGridLayout->addWidget(idLabel,0,0);
     idGridLayout->addWidget(idLineEdite,0,1);
-
-    idGroupBox->setLayout(idGridLayout);
+    idGridLayout->setContentsMargins(0,0,0,0);
 //    1. Player->Delete节点内容。
     QGroupBox *deleteGroupBox = new QGroupBox( tr("删除实体(只能删除交通车)"),playerPageWidget);
     deleteGroupBox->setCheckable(true);
@@ -375,7 +379,7 @@ MyWidget::MyWidget(QWidget *parent)
     QLabel *driverNameDccLabel = new QLabel(tr("库中驾驶员模型"), this);
     QLineEdit *driverNameLineEdite = new QLineEdit(this);
 
-    QGridLayout *driverBehaviorGridLayout = new QGridLayout(this);
+    QGridLayout *driverBehaviorGridLayout = new QGridLayout(driverBehaviorGroupBox);
 
     driverBehaviorGridLayout->addWidget(desirFreSpdLabel,0,0);
     driverBehaviorGridLayout->addWidget(desirFreSpdLineEdite,0,1);
@@ -392,7 +396,6 @@ MyWidget::MyWidget(QWidget *parent)
     driverBehaviorGridLayout->addWidget(driverNameDccLabel,4,0);
     driverBehaviorGridLayout->addWidget(driverNameLineEdite,4,1);
 
-    driverBehaviorGroupBox->setLayout(driverBehaviorGridLayout);
 
 //    3. Player->Creat节点内容。
     QGroupBox *creatGroupBox = new QGroupBox( tr("创建实体(创建出来的是交通车或行人物体)"),playerPageWidget);
@@ -427,7 +430,7 @@ MyWidget::MyWidget(QWidget *parent)
     QLabel *drDegLabel = new QLabel(tr("相对本车的r角度"), this);
     QLineEdit *drDegLineEdite = new QLineEdit(this);
 
-    QGridLayout *creatGridLayout = new QGridLayout();
+    QGridLayout *creatGridLayout = new QGridLayout(creatGroupBox);
 
     creatGridLayout->addWidget(categoryLabel,0,0);
     creatGridLayout->addWidget(categoryComBox,0,1);
@@ -456,7 +459,6 @@ MyWidget::MyWidget(QWidget *parent)
     creatGridLayout->addWidget(drDegLabel,8,0);
     creatGridLayout->addWidget(drDegLineEdite,8,1);
 
-    creatGroupBox->setLayout(creatGridLayout);
 
 //    4. Player->LeftTurnLight节点内容。
     QGroupBox *leftTurnLightGroupBox = new QGroupBox(tr("左转向灯"),playerPageWidget);
@@ -472,7 +474,7 @@ MyWidget::MyWidget(QWidget *parent)
     QComboBox *stateMaskComBox = new QComboBox(this);
     stateMaskComBox->addItems({"0","1"});
 
-    QGridLayout * leftTurnLightGridLayout = new QGridLayout(this);
+    QGridLayout * leftTurnLightGridLayout = new QGridLayout(leftTurnLightGroupBox);
 
     leftTurnLightGridLayout->addWidget(stateLabel,0,0);
     leftTurnLightGridLayout->addWidget(stateComBox,0,1);
@@ -480,7 +482,6 @@ MyWidget::MyWidget(QWidget *parent)
     leftTurnLightGridLayout->addWidget(stateMaskLabel,1,0);
     leftTurnLightGridLayout->addWidget(stateMaskComBox,1,1);
 
-    leftTurnLightGroupBox->setLayout(leftTurnLightGridLayout);
 
 //    5. Player->RightTurnLight节点内容。
     QGroupBox *rightTurnLightGroupBox = new QGroupBox(tr("右转向灯"),playerPageWidget);
@@ -496,7 +497,7 @@ MyWidget::MyWidget(QWidget *parent)
     QComboBox *stateMaskComBox5 = new QComboBox(this);
     stateMaskComBox5->addItems({"0","1"});
 
-    QGridLayout * rightTurnLightGridLayout = new QGridLayout(this);
+    QGridLayout * rightTurnLightGridLayout = new QGridLayout(rightTurnLightGroupBox);
 
     rightTurnLightGridLayout->addWidget(stateLabel5,0,0);
     rightTurnLightGridLayout->addWidget(stateComBox5,0,1);
@@ -504,7 +505,6 @@ MyWidget::MyWidget(QWidget *parent)
     rightTurnLightGridLayout->addWidget(stateMaskLabel5,1,0);
     rightTurnLightGridLayout->addWidget(stateMaskComBox5,1,1);
 
-    rightTurnLightGroupBox->setLayout(rightTurnLightGridLayout);
 
 //    6. Player->HeadLight节点内容。
     QGroupBox *headLightGroupBox = new QGroupBox(tr("车头灯"),playerPageWidget);
@@ -520,7 +520,7 @@ MyWidget::MyWidget(QWidget *parent)
     QComboBox *stateMaskComBox6 = new QComboBox(this);
     stateMaskComBox6->addItems({"0","1"});
 
-    QGridLayout * headLightGridLayout = new QGridLayout(this);
+    QGridLayout * headLightGridLayout = new QGridLayout(headLightGroupBox);
 
     headLightGridLayout->addWidget(stateLabel6,0,0);
     headLightGridLayout->addWidget(stateComBox6,0,1);
@@ -528,7 +528,6 @@ MyWidget::MyWidget(QWidget *parent)
     headLightGridLayout->addWidget(stateMaskLabel6,1,0);
     headLightGridLayout->addWidget(stateMaskComBox6,1,1);
 
-    headLightGroupBox->setLayout(headLightGridLayout);
 
 //    7. Player->BrakeLight节点内容。
     QGroupBox *brakeLightGroupBox = new QGroupBox(tr("刹车灯"),playerPageWidget);
@@ -544,7 +543,7 @@ MyWidget::MyWidget(QWidget *parent)
     QComboBox *stateMaskComBox7 = new QComboBox(this);
     stateMaskComBox7->addItems({"0","1"});
 
-    QGridLayout * brakeLightGridLayout = new QGridLayout(this);
+    QGridLayout * brakeLightGridLayout = new QGridLayout(brakeLightGroupBox);
 
     brakeLightGridLayout->addWidget(stateLabel7,0,0);
     brakeLightGridLayout->addWidget(stateComBox7,0,1);
@@ -552,7 +551,6 @@ MyWidget::MyWidget(QWidget *parent)
     brakeLightGridLayout->addWidget(stateMaskLabel7,1,0);
     brakeLightGridLayout->addWidget(stateMaskComBox7,1,1);
 
-    brakeLightGroupBox->setLayout(brakeLightGridLayout);
 
 //     8. Player->PositionAbsolute节点内容。
     QGroupBox *posAbsGroupBox = new QGroupBox(tr("设定交通车的绝对位置"),playerPageWidget);
@@ -570,7 +568,7 @@ MyWidget::MyWidget(QWidget *parent)
     QLabel *hDegLabel = new QLabel(tr("hDeg坐标"));
     QLineEdit *hDegLineEdit = new QLineEdit();
 
-    QGridLayout *posAbsGridLayout = new QGridLayout();
+    QGridLayout *posAbsGridLayout = new QGridLayout(posAbsGroupBox);
 
     posAbsGridLayout->addWidget(xLabel,0,0);
     posAbsGridLayout->addWidget(xLineEdit,0,1);
@@ -584,7 +582,6 @@ MyWidget::MyWidget(QWidget *parent)
     posAbsGridLayout->addWidget(hDegLabel,3,0);
     posAbsGridLayout->addWidget(hDegLineEdit,3,1);
 
-    posAbsGroupBox->setLayout(posAbsGridLayout);
 
 //    9. Player->PositionRelative节点内容。
     QGroupBox *posRelGroupBox = new QGroupBox(tr("横向追车"),playerPageWidget);
@@ -605,7 +602,7 @@ MyWidget::MyWidget(QWidget *parent)
     QLabel *dhDegLabel9 = new QLabel(tr("相对实体的方向角"));
     QLineEdit *dhDegLineEdit9 = new QLineEdit();
 
-    QGridLayout *posRelGridLayout = new QGridLayout();
+    QGridLayout *posRelGridLayout = new QGridLayout(posRelGroupBox);
 
     posRelGridLayout->addWidget(actorLabel9,0,0);
     posRelGridLayout->addWidget(actorLineEdit9,0,1);
@@ -622,7 +619,6 @@ MyWidget::MyWidget(QWidget *parent)
     posRelGridLayout->addWidget(dhDegLabel9,4,0);
     posRelGridLayout->addWidget(dhDegLineEdit9,4,1);
 
-    posRelGroupBox->setLayout(posRelGridLayout);
 
     QVBoxLayout *playerPagelayout = new QVBoxLayout(playerPageWidget);
 //    playerPagelayout->setSizeConstraint(QLayout::SetFixedSize);
@@ -962,14 +958,14 @@ MyWidget::MyWidget(QWidget *parent)
     QLabel *idLabel2 = new QLabel(tr("交通灯的id"), this);
     QLineEdit *idLineEdite2 = new QLineEdit(this);
 
-    QGridLayout *idGridLayout2 = new QGridLayout(this);
+    QGridLayout *idGridLayout2 = new QGridLayout(idGroupBox2);
     idGridLayout2->addWidget(idLabel2,0,0);
     idGridLayout2->addWidget(idLineEdite2,0,1);
+    idGridLayout2->setContentsMargins(0,0,0,0);
 
-
-    idGroupBox2->setLayout(idGridLayout2);
     idGroupBox2->setStyleSheet("QGroupBox{border:none}");
-//    1.TrafficLight->SetState节点内容。
+
+    //    1.TrafficLight->SetState节点内容。
     QGroupBox *setStateGroupBox = new QGroupBox( tr("设置交通灯当前的状态"),trafficLightPageWidget);
     setStateGroupBox->setCheckable(true);
 
@@ -978,12 +974,11 @@ MyWidget::MyWidget(QWidget *parent)
     QComboBox *stateComBox2 = new QComboBox(this);
     stateComBox2->addItems({"stop","go","attention"});
 
-    QGridLayout *setStateGridLayout = new QGridLayout(this);
+    QGridLayout *setStateGridLayout = new QGridLayout(setStateGroupBox);
 
     setStateGridLayout->addWidget(stateLabel2,0,0);
     setStateGridLayout->addWidget(stateComBox2,0,1);
 
-    setStateGroupBox->setLayout(setStateGridLayout);
 
 //    2.TrafficLight->SetPhase节点内容。
     QGroupBox *setPhaseGroupBox = new QGroupBox( tr("设置交通灯的相位的时长"),trafficLightPageWidget);
@@ -998,15 +993,13 @@ MyWidget::MyWidget(QWidget *parent)
     QLabel *durationLabel = new QLabel(tr("设置持续时间"), this);
     QLineEdit *durationLineEdite = new QLineEdit(this);
 
-    QGridLayout *setPhaseGridLayout = new QGridLayout(this);
+    QGridLayout *setPhaseGridLayout = new QGridLayout(setPhaseGroupBox);
 
     setPhaseGridLayout->addWidget(stateLabel3,0,0);
     setPhaseGridLayout->addWidget(stateComBox3,0,1);
 
     setPhaseGridLayout->addWidget(durationLabel,1,0);
     setPhaseGridLayout->addWidget(durationLineEdite,1,1);
-
-    setPhaseGroupBox->setLayout(setPhaseGridLayout);
 
     QVBoxLayout *trafficLightLayout = new QVBoxLayout(trafficLightPageWidget);
 //    trafficLightLayout->setSizeConstraint(QLayout::SetFixedSize);
@@ -1179,7 +1172,7 @@ MyWidget::MyWidget(QWidget *parent)
     QLabel *drDegLabel2 = new QLabel(tr("相对本车的r角度"));
     QLineEdit *drDegLineEdite2 = new QLineEdit(this);
 
-    QGridLayout *posRelGridLayout2 = new QGridLayout();
+    QGridLayout *posRelGridLayout2 = new QGridLayout(posRelGroupBox2);
 
     posRelGridLayout2->addWidget(idLabel3,0,0);
     posRelGridLayout2->addWidget(idLineEdite3,0,1);
@@ -1202,8 +1195,6 @@ MyWidget::MyWidget(QWidget *parent)
     posRelGridLayout2->addWidget(drDegLabel2,6,0);
     posRelGridLayout2->addWidget(drDegLineEdite2,6,1);
 
-    posRelGroupBox2->setLayout(posRelGridLayout2);
-
     //2. Animator->FOV
     QGroupBox *FOVGroupBox = new QGroupBox(tr("FOV显示"),animatorPageWidget);
     FOVGroupBox->setCheckable(true);
@@ -1216,16 +1207,18 @@ MyWidget::MyWidget(QWidget *parent)
     QLabel *actorLabel6 = new QLabel(tr("id"), this);
     QLineEdit *actorLineEdite6 = new QLineEdit(this);
 
-    QGridLayout *FOVGridLayout = new QGridLayout(this);
+    QGridLayout *FOVGridLayout = new QGridLayout(FOVGroupBox);
+
     FOVGridLayout->addWidget(showLabel,0,0);
+
     FOVGridLayout->addWidget(showComBox,0,1);
+
 //    FOVGridLayout->addWidget(showLineEdite,0,1);
 
     FOVGridLayout->addWidget(actorLabel6,1,0);
     FOVGridLayout->addWidget(actorLineEdite6,1,1);
 
     FOVGroupBox->setLayout(FOVGridLayout);
-
 
     QVBoxLayout *animatorLayout = new QVBoxLayout(animatorPageWidget);
 //    animatorLayout->setSizeConstraint(QLayout::SetFixedSize);

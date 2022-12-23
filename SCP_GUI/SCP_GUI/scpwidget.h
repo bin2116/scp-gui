@@ -9,6 +9,8 @@
 #include <QStackedWidget>
 #include <QWidget>
 #include <QScrollArea>
+#include <QDoubleSpinBox>
+#include <QRadioButton>
 
 
 class ScpWidget: public QWidget
@@ -19,6 +21,7 @@ public:
 
     QScrollArea * scrollArea;
     QStackedWidget *stackedWidget;
+
     QWidget *trafficWidget;
     QWidget *playerWidget;
     QWidget *envActWidget;
@@ -33,6 +36,8 @@ public:
     QLineEdit *actorLineEdite;
     QLineEdit *targetLineEdite;
     QLineEdit *rateLineEdite;
+    QLineEdit *triggerLineEdite;
+
 
     QFormLayout *actSpdChgLayout;
 
@@ -43,6 +48,8 @@ public:
     QLineEdit *relativeactorLineEdite;
     QLineEdit *targetLineEdit;
     QLineEdit *ratetLineEdit2;
+    QLineEdit *triggerLineEdite2;
+
 
     QFormLayout *actRelSpdChgLayout;
 
@@ -52,6 +59,8 @@ public:
     QLineEdit *actLineEdite3;
     QLineEdit *timeLineEdit;
     QLineEdit *valueLineEdit;
+    QLineEdit *triggerLineEdite3;
+
 
     QFormLayout *actLaneChgLayout;
 
@@ -63,6 +72,8 @@ public:
     QLineEdit *distanceLineEdit;
     QLineEdit *maxDecLineEdit;
     QLineEdit *maxAccLineEdit;
+    QLineEdit *triggerLineEdite4;
+
 
     QFormLayout *actLongiDisLayout;
 
@@ -71,6 +82,8 @@ public:
 
     QLineEdit *actorLineEdit;
     QLineEdit *relativeactorLineEdit5;
+    QLineEdit *triggerLineEdite5;
+
 
     QFormLayout *actLateralDisLayout;
 
@@ -84,6 +97,7 @@ public:
     QLineEdit *innerRadiusLineEdit;
     QLineEdit *offsetLineEdit;
     QLineEdit *numberOfVehiclesLineEdit;
+
 
     QFormLayout *trafficSwarmActLayout;
 
@@ -100,6 +114,8 @@ public:
     QGroupBox *actAutoGroupBox;
 
     QLineEdit *actAutoLineEdit;
+    QLineEdit *triggerLineEdite6;
+
 
     QFormLayout *actAutoLayout;
 
@@ -109,6 +125,8 @@ public:
     QLineEdit *actorLineEdit11;
     QLineEdit *desirSpdLineEdit11;
     QLineEdit *trajectoryLineEdit11;
+    QLineEdit *triggerLineEdite7;
+
 
     QFormLayout *actTraLayout;
 
@@ -117,22 +135,19 @@ public:
 
     QLineEdit *actorLineEdit12;
     QLineEdit *pathShapeLineEdit;
+    QLineEdit *triggerLineEdite8;
     QComboBox *loopComBox;
 
     QFormLayout *actionPathLayout;
 
-    QVBoxLayout *trafficlayout;
-
     //Player
 //    QGroupBox *idGroupBox;
 
-    QLineEdit *idLineEdite;
-
-    QFormLayout *idLayout;
-
     //1. Player->Delete
     QGroupBox *deleteGroupBox;
+    QLineEdit *idLineEdite1;
 
+    QFormLayout *deleteLayout;
     //2. Player->DriverBehavior
     QGroupBox *driverBehaviorGroupBox;
 
@@ -141,6 +156,7 @@ public:
     QLineEdit *desirAccLineEdite;
     QLineEdit *desirDccLineEdite;
     QLineEdit *driverNameLineEdite;
+    QLineEdit *idLineEdite2;
 
     QFormLayout *driverBehaviorLayout;
 
@@ -156,6 +172,7 @@ public:
     QLineEdit *dhDegLineEdite;
     QLineEdit *dpDegLineEdite;
     QLineEdit *drDegLineEdite;
+    QLineEdit *idLineEdite3;
 
     QFormLayout *creatLayout;
 
@@ -164,6 +181,7 @@ public:
 
     QComboBox *stateComBox;
     QComboBox *stateMaskComBox;
+    QLineEdit *idLineEdite4;
 
     QFormLayout *leftTurnLightLayout;
 
@@ -172,6 +190,7 @@ public:
 
     QComboBox *stateComBox5;
     QComboBox *stateMaskComBox5;
+    QLineEdit *idLineEdite5;
 
     QFormLayout *rightTurnLightLayout;
 
@@ -180,6 +199,7 @@ public:
 
     QComboBox *stateComBox6;
     QComboBox *stateMaskComBox6;
+    QLineEdit *idLineEdite6;
 
     QFormLayout *headLightLayout;
 
@@ -188,9 +208,9 @@ public:
 
     QComboBox *stateComBox7;
     QComboBox *stateMaskComBox7;
+    QLineEdit *idLineEdite7;
 
-
-
+    QFormLayout *brakeLightLayout;
     //8.Player->PositionAbsolute
     QGroupBox *posAbsGroupBox;
 
@@ -198,6 +218,7 @@ public:
     QLineEdit *yLineEdit;
     QLineEdit *zLineEdit;
     QLineEdit *hDegLineEdit;
+    QLineEdit *idLineEdite8;
 
     QFormLayout *posAbsLayout;
 
@@ -209,116 +230,92 @@ public:
     QLineEdit *laneLineEdit;
     QLineEdit *offsetLineEdit9;
     QLineEdit *dhDegLineEdit9;
+    QLineEdit *idLineEdite9;
 
     QFormLayout *posRelLayout;
 
-    QVBoxLayout *playerPagelayout;
     //EnvironmentAction
-    //EnvironmentAction->Environment
-    QGroupBox *environmentGroupBox;
-
+    //光照
+    QGroupBox *lightGroupBox;
     QComboBox *sunTypeComBox;
+    QStackedWidget *sunTypeStackWidget;
+    QWidget *lightWidget;
+    QWidget *timeWidget;
 
-   //EnvironmentAction->Environment->TimeOfDay
-    QGroupBox *timeOfDayGroupBox;
+    QDoubleSpinBox *luxBox;
+    QDoubleSpinBox *elevationBox;
+    QDoubleSpinBox *azimuthBox;
 
-    QComboBox *animationComBox;
-    QLineEdit *dateTimeLineEdit;
+    QDateTimeEdit *dateEdit;
+    QDateTimeEdit *timeEdit;
+    QRadioButton * timeFlowButton;
 
-    QFormLayout *timeOfDayLayout;
 
-    //EnvironmentAction->Environment->Weather
-    QGroupBox *weatherGroupBox;
+    QFormLayout *envLayout;
+    QFormLayout *lightLayout;
+    QFormLayout *timeLayout;
 
+    //云层
+    QGroupBox *cloudStateGroupBox;
     QComboBox *cloudStateComBox;
 
     QFormLayout *cloudStateLayout;
 
-    //EnvironmentAction->Environment->Weather->Sun
-    QGroupBox *sunGroupBox;
-
-    QLineEdit *intensityLineEdit;
-    QLineEdit *elevationLineEdit;
-    QLineEdit *azimuthLineEdit;
-
-    QFormLayout *sunLayout;
-
-    //EnvironmentAction->Environment->Weather->Fog
-    QGroupBox *fogGroupBox;
+    //雨雪
+    QGroupBox *rain_snow_GroupBox;
 
     QComboBox *typeComBox;
-    QComboBox *fogRangeComBox;
-    QLineEdit *visualRangeLineEdit;
 
-    QFormLayout *typeFogVisualLayout;
+    QSlider *value_slider;
+    QLineEdit *value_edit;
+    QLabel *percen_label;
 
-    //EnvironmentAction->Environment->Weather->Fog->BoundingBox
-    QGroupBox *boundingBoxGroupBox;
+    QFormLayout *rain_snow_layout;
 
-    //EnvironmentAction->Environment->Weather->Fog->BoundingBox->Center
-    QGroupBox *centerGroupBox;
-    QLineEdit *xLineEdit2; //x坐标
-    QLineEdit *yLineEdit2; //y坐标
-    QLineEdit *zLineEdit2; //z坐标
-    QFormLayout *centerLayout;
+    //雾/尘
+    QGroupBox *fog_dust_groupBox;
+    QComboBox *typeComBox2;
+    QComboBox *rangeComboBox;
+    QLineEdit *visualRange;
 
-    //EnvironmentAction->Environment->Weather->Fog->BoundingBox->Dimensions
-    QGroupBox *dimGroupBox;
-    QLineEdit *lenLineEdit; //雾框的长度
-    QLineEdit *heightLineEdit; //雾框的高度
-    QLineEdit *widthLineEdit; //雾框的宽度
-    QFormLayout *dimLayout;
+    QLineEdit *xLineEdit2;
+    QLineEdit *yLineEdit2;
+    QLineEdit *zLineEdit2;
 
-    //EnvironmentAction->Environment->Weather->Precipitation
-    QGroupBox *precGroupBox;
-    QLineEdit *intensityLineEdit2; //强度
-    QComboBox *precComBox; //下雨类型
-    QFormLayout *precLayout;
+    QLineEdit *lengthLineEdit;
+    QLineEdit *widthLineEdit;
+    QLineEdit *heightLineEdit;
 
-    //EnvironmentAction->Environment->RoadCondition
-    QGroupBox *roadConGroupBox;
-    QLineEdit *fricScalLineEdit; //摩擦系数
-    QFormLayout *roadConLayout;
+    QFormLayout *fog_dust_layout;
 
-    //EnvironmentAction->Environment->Properties
-    QGroupBox *propertiesGroupBox;
+    //路面积水
+    QGroupBox *water_groupBox;
+    QComboBox *type_comboBox;
+    QSlider *water_slider;
+    QLineEdit *value_edit2;
+    QLabel *percen_label2;
 
-    //EnvironmentAction->Environment->Properties->Property1
-    QGroupBox *property1GroupBox;
-    QLineEdit *name1LineEdite; //积水
-    QComboBox *value1ComBox; // 积水类型
-    QFormLayout *name1Layout;
+    QFormLayout *water_layout;
 
-    //EnvironmentAction->Environment->Properties->Property2
-    QGroupBox *property2GroupBox;
-    QLineEdit *name2LineEdite; //name2 积水量
-    QLineEdit *value2LineEdite; //value2 积水类型
-    QFormLayout *name2Layout;
+    //路面摩擦
+    QGroupBox *fric_groupBox;
+    QLineEdit *fric_comboBox;
 
-    QVBoxLayout *envLayout;
-    QVBoxLayout *envChildLayout;
-    QVBoxLayout *weatherVLayout;
-    QVBoxLayout *properVLayout;
-    QVBoxLayout *fogVLayout;
-    QVBoxLayout *boundingBoxVLayout;
+    QFormLayout *fric_layout;
 
     //TrafficLight
-    QGroupBox *idGroupBox2;
-    QLineEdit *idLineEdite2; //交通灯的id
-    QFormLayout *idLayout2;
 
     //1.TrafficLight->SetState节点内容。
     QGroupBox *setStateGroupBox;
     QComboBox *stateComBox2; //设置的状态
     QFormLayout *setStateLayout;
-
+    QLineEdit *idLineEdite10; //交通灯的id
     //2.TrafficLight->SetPhase
     QGroupBox *setPhaseGroupBox;
     QComboBox *stateComBox3;
     QLineEdit *durationLineEdite;
     QFormLayout *setPhaseLayout;
-
-    QVBoxLayout *trafficLightLayout;
+    QLineEdit *idLineEdite11; //交通灯的id
 
     //Set
     //Set->Trigger
@@ -365,7 +362,7 @@ public:
     //Animator
     //1. Animator->PosistionRelative
     QGroupBox *posRelGroupBox2;
-    QLineEdit *idLineEdite3; //实体的id
+    QLineEdit *idLineEdite12; //实体的id
     QLineEdit *dxLineEdite2; //相对本车的x坐标
     QLineEdit *dyLineEdite2; //相对本车的y坐标
     QLineEdit *dzLineEdite2; //相对本车的z坐标

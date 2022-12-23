@@ -17,10 +17,12 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
     main.cpp \
-    mywidget.cpp
+    mywidget.cpp \
+    scpwidget.cpp
 
 HEADERS += \
-    mywidget.h
+    mywidget.h \
+    scpwidget.h
 
 FORMS += \
     mywidget.ui

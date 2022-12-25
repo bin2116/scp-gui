@@ -216,7 +216,7 @@ void ScpWidget::initPlayerWidget()
     driverBehaviorLayout->addRow("库中驾驶员模型",driverNameLineEdite);
 
     //3. Player->Creat
-    creatGroupBox = new QGroupBox(tr("创建实体(创建出来的是交通车或行人物体)"),playerWidget);
+    creatGroupBox = new QGroupBox(tr("创建实体"),playerWidget);
     creatGroupBox->setCheckable(true);
 
     idLineEdite3 = new QLineEdit(creatGroupBox);
@@ -257,7 +257,7 @@ void ScpWidget::initPlayerWidget()
     leftTurnLightLayout = new QFormLayout(leftTurnLightGroupBox);
     leftTurnLightLayout->addRow(tr("实体id"),idLineEdite4);
     leftTurnLightLayout->addRow(tr("状态"),stateComBox);
-    leftTurnLightLayout->addRow(tr("是否覆盖自动给的转向状态"),stateMaskComBox);
+    leftTurnLightLayout->addRow(tr("覆盖自动转向状态"),stateMaskComBox);
 
     //5. Player->RightTurnLight
     rightTurnLightGroupBox = new QGroupBox(tr("右转向灯"),playerWidget);
@@ -273,7 +273,7 @@ void ScpWidget::initPlayerWidget()
     rightTurnLightLayout = new QFormLayout(rightTurnLightGroupBox);
     rightTurnLightLayout->addRow(tr("实体id"),idLineEdite5);
     rightTurnLightLayout->addRow(tr("状态"),stateComBox5);
-    rightTurnLightLayout->addRow(tr("是否覆盖自动给的转向状态"),stateMaskComBox5);
+    rightTurnLightLayout->addRow(tr("覆盖自动转向状态"),stateMaskComBox5);
 
     //6. Player->HeadLight
     headLightGroupBox = new QGroupBox(tr("车头灯"),playerWidget);
@@ -289,7 +289,7 @@ void ScpWidget::initPlayerWidget()
     headLightLayout = new QFormLayout(headLightGroupBox);
     headLightLayout->addRow(tr("实体id"),idLineEdite6);
     headLightLayout->addRow(tr("状态"),stateComBox6);
-    headLightLayout->addRow(tr("是否覆盖自动给的头灯状态"),stateMaskComBox6);
+    headLightLayout->addRow(tr("覆盖自动头灯状态"),stateMaskComBox6);
 
     //7. Player->BrakeLight
     brakeLightGroupBox = new QGroupBox(tr("刹车灯"),playerWidget);
@@ -305,7 +305,7 @@ void ScpWidget::initPlayerWidget()
     brakeLightLayout = new QFormLayout(brakeLightGroupBox);
     brakeLightLayout->addRow(tr("实体id"),idLineEdite7);
     brakeLightLayout->addRow(tr("状态"),stateComBox7);
-    brakeLightLayout->addRow(tr("是否覆盖自动给的制动状态"),stateMaskComBox7);
+    brakeLightLayout->addRow(tr("覆盖自动制动状态"),stateMaskComBox7);
 
     //8.Player->PositionAbsolute
     posAbsGroupBox = new QGroupBox(tr("设定交通车的绝对位置"),playerWidget);
@@ -338,9 +338,9 @@ void ScpWidget::initPlayerWidget()
     posRelLayout = new QFormLayout(posRelGroupBox);
     posRelLayout->addRow(tr("实体id"),idLineEdite9);
     posRelLayout->addRow(tr("相对实体id"),actorLineEdit9);
-    posRelLayout->addRow(tr("相对实体沿道路方向的距离"),disLineEdit);
-    posRelLayout->addRow(tr("相对实体的车道的id(左+ /右-)"),laneLineEdit);
-    posRelLayout->addRow(tr("偏离车道的距离(默认为0)"),offsetLineEdit9);
+    posRelLayout->addRow(tr("相对实体的纵向距离"),disLineEdit);
+    posRelLayout->addRow(tr("相对实体的车道id"),laneLineEdit);
+    posRelLayout->addRow(tr("偏离车道的距离"),offsetLineEdit9);
     posRelLayout->addRow(tr("相对实体的方向角"),dhDegLineEdit9);
 
     //playerWidget布局
@@ -376,7 +376,6 @@ void ScpWidget::initEnvactWidget()
     envLayout->addRow("配置方式",sunTypeComBox);
 
     sunTypeStackWidget = new QStackedWidget(lightGroupBox);
-    sunTypeStackWidget->setContentsMargins(0,0,0,0);
     lightWidget = new QWidget(sunTypeStackWidget);
     timeWidget = new QWidget(sunTypeStackWidget);
     sunTypeStackWidget->addWidget(lightWidget);
@@ -386,10 +385,8 @@ void ScpWidget::initEnvactWidget()
             sunTypeStackWidget, SLOT(setCurrentIndex(int)));
 
     lightLayout = new QFormLayout;
-    lightLayout->setContentsMargins(0,0,0,0);
 
     timeLayout = new QFormLayout;
-    timeLayout->setContentsMargins(0,0,0,0);
 
     luxBox = new QDoubleSpinBox(lightWidget);
     luxBox->setMaximum(1000000);
@@ -397,7 +394,6 @@ void ScpWidget::initEnvactWidget()
 
     elevationBox = new QDoubleSpinBox(lightWidget);
     azimuthBox = new QDoubleSpinBox(lightWidget);
-
     lightLayout->addRow("光强  lux",luxBox);
     lightLayout->addRow("旋转角",azimuthBox);
     lightLayout->addRow("抬升角",elevationBox);
@@ -420,8 +416,10 @@ void ScpWidget::initEnvactWidget()
     lightVlayout->setAlignment(Qt::AlignTop);
 
     QVBoxLayout *light_Vlayout = new QVBoxLayout(lightWidget);
+    light_Vlayout->setContentsMargins(0,0,0,0);
     light_Vlayout->addLayout(lightLayout);
     QVBoxLayout *time_layout = new QVBoxLayout(timeWidget);
+    time_layout->setContentsMargins(0,0,0,0);
     time_layout->addLayout(timeLayout);
 
     //云层
@@ -566,11 +564,11 @@ void ScpWidget::initTrafficlightWidget()
     idLineEdite10 = new QLineEdit(setStateGroupBox);
 
     setStateLayout = new QFormLayout(setStateGroupBox);
-    setStateLayout->addRow(tr("交通灯的id"),idLineEdite10);
-    setStateLayout->addRow(tr("设置的状态"),stateComBox2);
+    setStateLayout->addRow(tr("交通灯id"),idLineEdite10);
+    setStateLayout->addRow(tr("状态"),stateComBox2);
 
     //2.TrafficLight->SetPhase
-    setPhaseGroupBox = new QGroupBox( tr("设置交通灯的相位的时长"),trafficLightWidget);
+    setPhaseGroupBox = new QGroupBox( tr("设置交通灯的相位时长"),trafficLightWidget);
     setPhaseGroupBox->setCheckable(true);
 
     idLineEdite11 = new QLineEdit(setPhaseGroupBox);
@@ -581,15 +579,156 @@ void ScpWidget::initTrafficlightWidget()
     durationLineEdite = new QLineEdit(setPhaseGroupBox);
 
     setPhaseLayout = new QFormLayout(setPhaseGroupBox);
-    setPhaseLayout->addRow(tr("交通灯的id"),idLineEdite11);
-    setPhaseLayout->addRow(tr("设置的相位"),stateComBox3);
-    setPhaseLayout->addRow(tr("设置持续时间"),durationLineEdite);
+    setPhaseLayout->addRow(tr("交通灯id"),idLineEdite11);
+    setPhaseLayout->addRow(tr("相位"),stateComBox3);
+    setPhaseLayout->addRow(tr("持续时间"),durationLineEdite);
 
     //trafficLightWidget布局
     QVBoxLayout *trafficLightLayout = new QVBoxLayout(trafficLightWidget);
     trafficLightLayout->setAlignment(Qt::AlignTop);
     trafficLightLayout->addWidget(setStateGroupBox);
     trafficLightLayout->addWidget(setPhaseGroupBox);
+}
+
+void ScpWidget::initSetWidget()
+{
+    setWidget = new QWidget(stackedWidget);
+    stackedWidget->addWidget(setWidget);
+
+    //Set->Trigger
+    triggerGroupBox = new QGroupBox(tr("设置触发节点"),setWidget);
+    triggerGroupBox->setCheckable(true);
+
+    QWidget *owner_nmae_widget = new QWidget(triggerGroupBox);
+
+    ownerLineEdite = new QLineEdit(owner_nmae_widget);
+    nameLineEdite = new QLineEdit(owner_nmae_widget);
+
+
+    owner_nmae_Layout =  new QFormLayout(owner_nmae_widget);
+    owner_nmae_Layout->addRow("触发所有者",ownerLineEdite);
+    owner_nmae_Layout->addRow("触发名称",nameLineEdite);
+
+    //Set->Trigger->Delete
+    deleteGroupBox2 = new QGroupBox("删除节点",triggerGroupBox);
+    deleteGroupBox2->setCheckable(true);
+
+    //Set->Trigger->PosAbsolute
+    posAbsGroupBox2 = new QGroupBox("绝对位置触发",triggerGroupBox);
+    posAbsGroupBox2->setCheckable(true);
+
+    xLineEdite3 = new QLineEdit(posAbsGroupBox2);
+    yLineEdite3 = new QLineEdit(posAbsGroupBox2);
+    radiusLineEdite3 = new QLineEdit(posAbsGroupBox2);
+
+    posAbsLayout2 = new QFormLayout(posAbsGroupBox2);
+    posAbsLayout2->addRow(tr("x坐标"),xLineEdite3);
+    posAbsLayout2->addRow(tr("y坐标"),yLineEdite3);
+    posAbsLayout2->addRow(tr("半径"),radiusLineEdite3);
+
+    //Set->Trigger->PosRelative
+    posRelGroupBox3 = new QGroupBox("相对位置触发",triggerGroupBox);
+    posRelGroupBox3->setCheckable(true);
+
+    relActLineEdite = new QLineEdit(posRelGroupBox3);
+    disLineEdite2 = new QLineEdit(posRelGroupBox3);
+
+    posRelLayout3 = new QFormLayout(posRelGroupBox3);
+    posRelLayout3->addRow(tr("参考实体id"),relActLineEdite);
+    posRelLayout3->addRow(tr("几何距离"),disLineEdite2);
+
+    //Set->Trigger->TTCRelative
+    TTCRelGroupBox = new QGroupBox("相对碰撞触发",triggerGroupBox);
+    TTCRelGroupBox->setCheckable(true);
+
+    QLineEdit *relActLineEdite2 = new QLineEdit(TTCRelGroupBox);
+    QLineEdit *timeLineEdite2 = new QLineEdit(TTCRelGroupBox);
+
+    TTCRelLayout = new QFormLayout(TTCRelGroupBox);
+    TTCRelLayout->addRow(tr("参考实体id"),relActLineEdite2);
+    TTCRelLayout->addRow(tr("距离碰撞的时间"),timeLineEdite2);
+
+    //Set->Trigger->THRelative
+    THRelGroupBox = new QGroupBox("车头时距触发",triggerGroupBox);
+    THRelGroupBox->setCheckable(true);
+
+    relActLineEdite3 = new QLineEdit(THRelGroupBox);
+    timeLineEdite3 = new QLineEdit(THRelGroupBox);
+
+    THRelLayout = new QFormLayout(THRelGroupBox);
+    THRelLayout->addRow(tr("参考实体id"),relActLineEdite3);
+    THRelLayout->addRow(tr("车头时距"),timeLineEdite3);
+
+    //Set->Trigger->Speed
+    spdGroupBox = new QGroupBox("速度触发",triggerGroupBox);
+    spdGroupBox->setCheckable(true);
+
+    valueLineEdite2 = new QLineEdit(spdGroupBox);
+    valueCheckBox = new QComboBox(spdGroupBox);
+    valueCheckBox->addItems({"true","false"});
+
+    spdLayout = new QFormLayout(spdGroupBox);
+    spdLayout->addRow(tr("速度触发值"),valueLineEdite2);
+    spdLayout->addRow(tr("超过该值时触发"),valueCheckBox);
+
+    //setWidget布局
+    QVBoxLayout *setPageLayout = new QVBoxLayout(setWidget);
+    setPageLayout->addWidget(triggerGroupBox);
+    setPageLayout->setAlignment(Qt::AlignTop);
+    QVBoxLayout *triggerLayout = new QVBoxLayout(triggerGroupBox);
+    triggerLayout->addWidget(owner_nmae_widget);
+    triggerLayout->addWidget(deleteGroupBox2);
+    triggerLayout->addWidget(posAbsGroupBox2);
+    triggerLayout->addWidget(posRelGroupBox3);
+    triggerLayout->addWidget(TTCRelGroupBox);
+    triggerLayout->addWidget(THRelGroupBox);
+    triggerLayout->addWidget(spdGroupBox);
+}
+
+void ScpWidget::initAnimatorWidget()
+{
+    animatorWidget = new QWidget(stackedWidget);
+    stackedWidget->addWidget(animatorWidget);
+
+    //1. Animator->PosistionRelative
+    posRelGroupBox2 = new QGroupBox( tr("摄像头相对于主车的位置"),animatorWidget);
+    posRelGroupBox2->setCheckable(true);
+
+    idLineEdite12 = new QLineEdit(posRelGroupBox2);
+    dxLineEdite2 = new QLineEdit(posRelGroupBox2);
+    dyLineEdite2 = new QLineEdit(posRelGroupBox2);
+    dzLineEdite2 = new QLineEdit(posRelGroupBox2);
+    dhDegLineEdite2 = new QLineEdit(posRelGroupBox2);
+    dpDegLineEdite2 = new QLineEdit(posRelGroupBox2);
+    drDegLineEdite2 = new QLineEdit(posRelGroupBox2);
+
+    posRelLayout2 = new QFormLayout(posRelGroupBox2);
+    posRelLayout2->addRow(tr("实体id"),idLineEdite12);
+    posRelLayout2->addRow(tr("相对x坐标"),dxLineEdite2);
+    posRelLayout2->addRow(tr("相对y坐标"),dyLineEdite2);
+    posRelLayout2->addRow(tr("相对z坐标"),dzLineEdite2);
+    posRelLayout2->addRow(tr("相对h角度"),dhDegLineEdite2);
+    posRelLayout2->addRow(tr("相对p角度"),dpDegLineEdite2);
+    posRelLayout2->addRow(tr("相对r角度"),drDegLineEdite2);
+
+    //2. Animator->FOV
+    FOVGroupBox = new QGroupBox(tr("FOV显示"),animatorWidget);
+    FOVGroupBox->setCheckable(true);
+
+    showComBox = new QComboBox(FOVGroupBox);
+    showComBox->addItems({"0","1"});
+    QLineEdit *actorLineEdite6 = new QLineEdit(FOVGroupBox);
+
+    FOVLayout = new QFormLayout(FOVGroupBox);
+    FOVLayout->addRow(tr("显示"),showComBox);
+    FOVLayout->addRow(tr("id"),actorLineEdite6);
+
+    //animatorWidget布局
+    QVBoxLayout *animatorLayout = new QVBoxLayout(animatorWidget);
+    animatorLayout->setAlignment(Qt::AlignTop);
+    animatorLayout->addWidget(posRelGroupBox2);
+    animatorLayout->addWidget(FOVGroupBox);
+
 }
 
 void ScpWidget::init_scpUi()
@@ -608,7 +747,7 @@ void ScpWidget::init_scpUi()
     initPlayerWidget();
     initEnvactWidget();
     initTrafficlightWidget();
-//    initSetWidget();
-//    initAnimatorWidget();
+    initSetWidget();
+    initAnimatorWidget();
 
 }

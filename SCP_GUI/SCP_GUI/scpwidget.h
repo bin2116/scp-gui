@@ -323,6 +323,7 @@ public:
     QLineEdit *ownerLineEdite;
     QLineEdit *nameLineEdite;
 
+    QFormLayout *owner_nmae_Layout;
     //Set->Trigger->Delete
     QGroupBox *deleteGroupBox2;
 
@@ -356,8 +357,6 @@ public:
     QLineEdit *valueLineEdite2; //速度触发的值
     QComboBox * valueCheckBox; //true:超过该值时触发;\nfalse:小于该值时触发
     QFormLayout *spdLayout;
-    QVBoxLayout *setPageLayout;
-    QVBoxLayout *triggerLayout;
 
     //Animator
     //1. Animator->PosistionRelative
@@ -376,7 +375,7 @@ public:
     QComboBox *showComBox;
     QLineEdit *actorLineEdite6;
     QFormLayout *FOVLayout;
-    QVBoxLayout *animatorLayout;
+
 
     void init_scpUi();
 
